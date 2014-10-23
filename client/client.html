@@ -1,0 +1,25 @@
+<head><title>Martin's Kickass DnD App</title></head>
+
+<body>
+{{> loginButtons align="right"}}<br/>
+<h1>DnD App</h1>
+  {{> welcome }}
+  {{> input }}
+  {{> messages }}
+</body>
+
+<template name="welcome">
+  <p>
+    Welcome to the DnD app! Please log in.
+  </p>
+</template>
+
+<template name="input">
+  <p>Message: <input type="text" id="message"></p>
+</template>
+
+<template name="messages">
+  {{#each messages}}
+    <strong>{{name}}:</strong> {{message}}<br/>
+  {{/each}}
+</template>
