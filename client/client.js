@@ -80,6 +80,9 @@ Template.character.events = {
 
       // Set skill bonuses
       update_skills(skills);
+
+      // Set passive wisdom
+      document.getElementById("passive_wisdom").value = 10 + Number(document.getElementById("perception_skill_bonus").value);
     }
   }
 }

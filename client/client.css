@@ -10,6 +10,11 @@ input {
   margin: 0px 0px 0px 10px;
 }
 
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .flow {
   display: flex;
   flex-flow: row nowrap;
@@ -37,26 +42,31 @@ input {
   float: right;
 }
 
-.save_wrapper, .skills_wrapper {
-  margin: 5px 0px 5px 0px;
+.save_wrapper, .skills_wrapper, #passive_wisdom_score_wrapper, #passive_wisdom_label_wrapper {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-#description_wrapper {
-  margin: 10px 0px 0px 0px;
+.skills_wrapper {
+  margin-right: 5px;
+}
+
+#description_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper {
+  margin-top: 10px;
 }
 
 #stats_col_one_wrapper {
-  margin: 0px 10px 0px 0px;
+  margin-right: 10px;
 }
 
 #inspiration_wrapper, #proficiency_wrapper, #saving_throws_wrapper {
-  margin: 0px 0px 10px 0px;
+  margin-bottom: 10px;
 }
 
-#skills_wrapper, #saving_throws_wrapper {
+#proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper {
+  margin-left: 5px;
+}
+
+#skills_wrapper, #saving_throws_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper {
   border: 1px solid;
-}
-
-#proficiency_label_wrapper, #inspiration_label_wrapper {
-  margin: 0px 0px 0px 5px;
 }
