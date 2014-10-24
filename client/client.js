@@ -1,6 +1,6 @@
-function update_skills(skills, attribute, prof) {
+function update_skills(skills) {
   skills.forEach(function (skill) {
-    update_proficiency(skill + "_skill", attribute);
+    update_proficiency(skill.name + "_skill", skill.attribute);
   });
 }
 
@@ -9,7 +9,7 @@ function update_proficiency(field, attribute) {
   var proficient_skill = document.getElementById(field).checked;
   var skill_bonus = Number(attribute_mod);
   if (proficient_skill)
-    skill_bonus += Number(prof);
+    skill_bonus += Number(proficiency_bonus);
   document.getElementById(field + "_bonus").value = prepend_plus(skill_bonus);
 }
 
@@ -26,11 +26,24 @@ Template.character.events = {
       // Declare variables
       var experience_per_level = [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
       var attributes = ["str","dex","con","int","wis","cha"];
-      var str_skills = ["athletics"];
-      var dex_skills = ["acrobatics","sleight_of_hand","stealth"];
-      var int_skills = ["arcana","history","investigation","nature","religion"];
-      var wis_skills = ["animal_handling","insight","medicine","perception","survival"];
-      var cha_skills = ["deception","intimidation","performance","persuasion"]
+      var skills = [{name: "athletics",       attribute: "str"},
+                    {name: "acrobatics",      attribute: "dex"},
+                    {name: "sleight_of_hand", attribute: "dex"},
+                    {name: "stealth",         attribute: "dex"},
+                    {name: "arcana",          attribute: "int"},
+                    {name: "history",         attribute: "int"},
+                    {name: "investigation",   attribute: "int"},
+                    {name: "nature",          attribute: "int"},
+                    {name: "religion",        attribute: "int"},
+                    {name: "animal_handling", attribute: "wis"},
+                    {name: "insight",         attribute: "wis"},
+                    {name: "medicine",        attribute: "wis"},
+                    {name: "perception",      attribute: "wis"},
+                    {name: "survival",        attribute: "wis"},
+                    {name: "deception",       attribute: "cha"},
+                    {name: "intimidation",    attribute: "cha"},
+                    {name: "performance",     attribute: "cha"},
+                    {name: "persuasion",      attribute: "cha"}];
 
       // Update attribute mods
       attributes.forEach(function (attribute) {
@@ -57,7 +70,7 @@ Template.character.events = {
       document.getElementById("level").value = current_level;
 
       // Set proficiency bonus
-      var proficiency_bonus = (Math.floor((Number(current_level) - 1) / 4)) + 2;
+      proficiency_bonus = (Math.floor((Number(current_level) - 1) / 4)) + 2;
       document.getElementById("proficiency_bonus").value = proficiency_bonus;
 
       // Set saving throws bonuses
@@ -66,12 +79,7 @@ Template.character.events = {
       });
 
       // Set skill bonuses
-      update_skills(str_skills, "str", proficiency_bonus);
-      update_skills(dex_skills, "dex", proficiency_bonus);
-      update_skills(int_skills, "int", proficiency_bonus);
-      update_skills(wis_skills, "wis", proficiency_bonus);
-      update_skills(cha_skills, "cha", proficiency_bonus);
-
+      update_skills(skills);
     }
   }
 }
