@@ -1,9 +1,3 @@
-function update_skills(skills) {
-  skills.forEach(function (skill) {
-    update_proficiency(skill.name + "_skill", skill.attribute);
-  });
-}
-
 function update_proficiency(field, attribute) {
   var attribute_mod = document.getElementById(attribute + "_mod").value;
   var proficient_skill = document.getElementById(field).checked;
@@ -79,7 +73,9 @@ Template.character.events = {
       });
 
       // Set skill bonuses
-      update_skills(skills);
+      skills.forEach(function (skill) {
+        update_proficiency(skill.name + "_skill", skill.attribute);
+      });
 
       // Set passive wisdom
       document.getElementById("passive_wisdom").value = 10 + Number(document.getElementById("perception_skill_bonus").value);
