@@ -2,24 +2,72 @@
 
 <body>
 {{> loginButtons align="right"}}<br/>
-<h1>DnD App</h1>
-  {{> welcome }}
-  {{> input }}
-  {{> messages }}
+<div id="character_sheet">
+{{> character }}
+</div>
 </body>
 
-<template name="welcome">
-  <p>
-    Welcome to the DnD app! Please log in.
-  </p>
+<template name="character">
+<table>
+  <tr>
+    <td></td>
+    <td>
+      <table>
+        <tr>
+          <td rowspan="2"> <input type="text" id="character_name"        placeholder="Character name">    </td>
+          <td>             <input type="text" id="class"                 placeholder="Class">             </td>
+          <td>             <input type="text" id="level" size="3"        placeholder="Level" disabled>    </td>
+          <td>             <input type="text" id="background"            placeholder="Background">        </td>
+          <td>             <input type="text" id="player_name"           placeholder="Player name">       </td>
+        </tr>
+        <tr>
+          <td>             <input type="text" id="race"                  placeholder="Race">              </td>
+          <td>             <input type="text" id="alignment" size="7"    placeholder="Alignment">         </td>
+          <td>             <input type="text" id="experience_points"     placeholder="Experience points"> </td>
+          <td>             <input type="text" id="add_experience_points" placeholder="Add exp">           </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        <tr> <td rowspan="2">Strength:     </td> <td> <input size="2" class="ability_mod"   type="text" id="str_mod" disabled> </td> </tr>
+        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="str">              </td> </tr>
+        <tr> <td rowspan="2">Dexterity:    </td> <td> <input size="2" class="ability_mod"   type="text" id="dex_mod" disabled> </td> </tr>
+        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="dex">              </td> </tr>
+        <tr> <td rowspan="2">Constitution: </td> <td> <input size="2" class="ability_mod"   type="text" id="con_mod" disabled> </td> </tr>
+        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="con">              </td> </tr>
+        <tr> <td rowspan="2">Intelligence: </td> <td> <input size="2" class="ability_mod"   type="text" id="int_mod" disabled> </td> </tr>
+        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="int">              </td> </tr>
+        <tr> <td rowspan="2">Wisdom:       </td> <td> <input size="2" class="ability_mod"   type="text" id="wis_mod" disabled> </td> </tr>
+        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="wis">              </td> </tr>
+        <tr> <td rowspan="2">Charisma:     </td> <td> <input size="2" class="ability_mod"   type="text" id="cha_mod" disabled> </td> </tr>
+        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="cha">              </td> </tr>
+      </table>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td>Inspiration:       </td> <td> <input type="text" id="inspiration" size="2">                </td>
+        </tr>
+        <tr>
+          <td>Proficiency bonus: </td> <td> <input type="text" id="proficiency_bonus" size="2" disabled> </td>
+        </tr>
+      </table>
+      
+      <div style="border: 1px solid;">
+        <p><input type="checkbox" id="str_save"><input type="text" id="str_save_bonus" size="2" disabled> Strength</p>
+        <p><input type="checkbox" id="dex_save"><input type="text" id="dex_save_bonus" size="2" disabled> Dexterity</p>
+        <p><input type="checkbox" id="con_save"><input type="text" id="con_save_bonus" size="2" disabled> Constitution</p>
+        <p><input type="checkbox" id="int_save"><input type="text" id="int_save_bonus" size="2" disabled> Intelligence</p>
+        <p><input type="checkbox" id="wis_save"><input type="text" id="wis_save_bonus" size="2" disabled> Wisdom</p>
+        <p><input type="checkbox" id="cha_save"><input type="text" id="cha_save_bonus" size="2" disabled> Charisma</p>
+        Saving throws
+      </div>
+    </td>
+  </tr>
+</table>
+
 </template>
 
-<template name="input">
-  <p>Message: <input type="text" id="message"></p>
-</template>
-
-<template name="messages">
-  {{#each messages}}
-    <strong>{{name}}:</strong> {{message}}<br/>
-  {{/each}}
-</template>
