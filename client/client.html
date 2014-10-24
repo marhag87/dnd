@@ -8,66 +8,217 @@
 </body>
 
 <template name="character">
-<table>
-  <tr>
-    <td></td>
-    <td>
-      <table>
-        <tr>
-          <td rowspan="2"> <input type="text" id="character_name"        placeholder="Character name">    </td>
-          <td>             <input type="text" id="class"                 placeholder="Class">             </td>
-          <td>             <input type="text" id="level" size="3"        placeholder="Level" disabled>    </td>
-          <td>             <input type="text" id="background"            placeholder="Background">        </td>
-          <td>             <input type="text" id="player_name"           placeholder="Player name">       </td>
-        </tr>
-        <tr>
-          <td>             <input type="text" id="race"                  placeholder="Race">              </td>
-          <td>             <input type="text" id="alignment" size="7"    placeholder="Alignment">         </td>
-          <td>             <input type="text" id="experience_points"     placeholder="Experience points"> </td>
-          <td>             <input type="text" id="add_experience_points" placeholder="Add exp">           </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <table>
-        <tr> <td rowspan="2">Strength:     </td> <td> <input size="2" class="ability_mod"   type="text" id="str_mod" disabled> </td> </tr>
-        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="str">              </td> </tr>
-        <tr> <td rowspan="2">Dexterity:    </td> <td> <input size="2" class="ability_mod"   type="text" id="dex_mod" disabled> </td> </tr>
-        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="dex">              </td> </tr>
-        <tr> <td rowspan="2">Constitution: </td> <td> <input size="2" class="ability_mod"   type="text" id="con_mod" disabled> </td> </tr>
-        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="con">              </td> </tr>
-        <tr> <td rowspan="2">Intelligence: </td> <td> <input size="2" class="ability_mod"   type="text" id="int_mod" disabled> </td> </tr>
-        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="int">              </td> </tr>
-        <tr> <td rowspan="2">Wisdom:       </td> <td> <input size="2" class="ability_mod"   type="text" id="wis_mod" disabled> </td> </tr>
-        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="wis">              </td> </tr>
-        <tr> <td rowspan="2">Charisma:     </td> <td> <input size="2" class="ability_mod"   type="text" id="cha_mod" disabled> </td> </tr>
-        <tr>                                     <td> <input size="2" class="ability_score" type="text" id="cha">              </td> </tr>
-      </table>
-    </td>
-    <td>
-      <table>
-        <tr>
-          <td>Inspiration:       </td> <td> <input type="text" id="inspiration" size="2">                </td>
-        </tr>
-        <tr>
-          <td>Proficiency bonus: </td> <td> <input type="text" id="proficiency_bonus" size="2" disabled> </td>
-        </tr>
-      </table>
-      
-      <div style="border: 1px solid;">
-        <p><input type="checkbox" id="str_save"><input type="text" id="str_save_bonus" size="2" disabled> Strength</p>
-        <p><input type="checkbox" id="dex_save"><input type="text" id="dex_save_bonus" size="2" disabled> Dexterity</p>
-        <p><input type="checkbox" id="con_save"><input type="text" id="con_save_bonus" size="2" disabled> Constitution</p>
-        <p><input type="checkbox" id="int_save"><input type="text" id="int_save_bonus" size="2" disabled> Intelligence</p>
-        <p><input type="checkbox" id="wis_save"><input type="text" id="wis_save_bonus" size="2" disabled> Wisdom</p>
-        <p><input type="checkbox" id="cha_save"><input type="text" id="cha_save_bonus" size="2" disabled> Charisma</p>
-        Saving throws
+  <div id="basic_info_wrapper" class="flow">
+    <div id="character_name_wrapper">
+      <input type="text" id="character_name" placeholder="Character name">
+    </div>
+    <div id="character_extra_wrapper">
+      <div id="character_extra_row_one_wrapper" class="flow">
+        <div id="race_wrapper">
+          <input type="text" id="race" placeholder="Race">
+        </div>
+        <div id="alignment_wrapper">
+          <input type="text" id="alignment" size="7" placeholder="Alignment">
+        </div>
+        <div id="background_wrapper">
+          <input type="text" id="background" placeholder="Background">    
+        </div>
+        <div id="player_name_wrapper">
+          <input type="text" id="player_name" placeholder="Player name">   
+        </div>
       </div>
-    </td>
-  </tr>
-</table>
+      <div id="character_extra_row_two_wrapper" class="flow">
+        <div id="class_wrapper">
+          <input type="text" id="class" placeholder="Class">
+        </div>
+        <div id="level_wrapper">
+          <input type="text" id="level" size="7" placeholder="Level" disabled>
+        </div>
+        <div id="experience_points_wrapper">
+          <input type="text" id="experience_points" placeholder="Experience points">
+        </div>
+        <div id="add_experience_points_wrapper">
+          <input type="text" id="add_experience_points" placeholder="Add exp">
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div id="description_wrapper">
+    <div id="description_col_one_wrapper">
+      <div id="stats_wrapper" class="flow">
+        <div id="stats_col_one_wrapper">    
+          <div id="str_wrapper" class="attribute_icon">
+            <div id="str_label" class="center">
+              Strength:
+            </div>
+            <div id="str_mod_wrapper" class="center">
+              <input size="1" class="ability_mod number_form" type="text" id="str_mod" disabled>
+            </div>
+            <div id="str_score" class="center">
+              <input size="1" class="ability_score" type="text" id="str">
+            </div>
+          </div>
+          <div id="dex_wrapper" class="attribute_icon">
+            <div id="dex_label" class="center">
+              Dexterity:
+            </div>
+            <div id="dex_mod_wrapper" class="center">
+              <input size="1" class="ability_mod number_form" type="text" id="dex_mod" disabled>
+            </div>
+            <div id="dex_score" class="center">
+              <input size="1" class="ability_score" type="text" id="dex">
+            </div>
+          </div>
+          <div id="con_wrapper" class="attribute_icon">
+            <div id="con_label" class="center">
+              Constitution:
+            </div>
+            <div id="con_mod_wrapper" class="center">
+              <input size="1" class="ability_mod number_form" type="text" id="con_mod" disabled>
+            </div>
+            <div id="con_score" class="center">
+              <input size="1" class="ability_score" type="text" id="con">
+            </div>
+          </div>
+          <div id="int_wrapper" class="attribute_icon">
+            <div id="int_label" class="center">
+              Intelligence:
+            </div>
+            <div id="int_mod_wrapper" class="center">
+              <input size="1" class="ability_mod number_form" type="text" id="int_mod" disabled>
+            </div>
+            <div id="int_score" class="center">
+              <input size="1" class="ability_score" type="text" id="int">
+            </div>
+          </div>
+          <div id="wis_wrapper" class="attribute_icon">
+            <div id="wis_label" class="center">
+              Wisdom:
+            </div>
+            <div id="wis_mod_wrapper" class="center">
+              <input size="1" class="ability_mod number_form" type="text" id="wis_mod" disabled>
+            </div>
+            <div id="wis_score" class="center">
+              <input size="1" class="ability_score" type="text" id="wis">
+            </div>
+          </div>
+          <div id="cha_wrapper" class="attribute_icon">
+            <div id="cha_label" class="center">
+              Charisma:
+            </div>
+            <div id="cha_mod_wrapper" class="center">
+              <input size="1" class="ability_mod number_form" type="text" id="cha_mod" disabled>
+            </div>
+            <div id="cha_score" class="center">
+              <input size="1" class="ability_score" type="text" id="cha">
+            </div>
+          </div>
+        </div>
+        <div id="stats_col_two_wrapper">
+          <div id="inspiration_wrapper" class="flow">
+            <div id="inspiration_score_wrapper">
+              <input type="text" id="inspiration" class="number_form" size="2">
+            </div>
+            <div id="inspiration_label_wrapper">
+              Inspiration
+            </div>
+          </div>
+          <div id="proficiency_wrapper" class="flow">
+            <div id="proficiency_score_wrapper">
+              <input type="text" id="proficiency_bonus" class="number_form" size="2" disabled>
+            </div>
+            <div id="proficiency_label_wrapper">
+              Proficiency bonus
+            </div>
+          </div>
+      
+          <div id="saving_throws_wrapper">
+            <div id="str_save_wrapper" class="save_wrapper">
+              <input type="checkbox" id="str_save"><input type="text" id="str_save_bonus" class="number_form" size="2" disabled> Strength
+            </div>
+            <div id="dex_save_wrapper" class="save_wrapper">
+              <input type="checkbox" id="dex_save"><input type="text" id="dex_save_bonus" class="number_form" size="2" disabled> Dexterity
+            </div>
+            <div id="con_save_wrapper" class="save_wrapper">
+              <input type="checkbox" id="con_save"><input type="text" id="con_save_bonus" class="number_form" size="2" disabled> Constitution
+            </div>
+            <div id="int_save_wrapper" class="save_wrapper">
+              <input type="checkbox" id="int_save"><input type="text" id="int_save_bonus" class="number_form" size="2" disabled> Intelligence
+            </div>
+            <div id="wis_save_wrapper" class="save_wrapper">
+              <input type="checkbox" id="wis_save"><input type="text" id="wis_save_bonus" class="number_form" size="2" disabled> Wisdom
+            </div>
+            <div id="cha_save_wrapper" class="save_wrapper">
+              <input type="checkbox" id="cha_save"><input type="text" id="cha_save_bonus" class="number_form" size="2" disabled> Charisma
+            </div>
+            <div id="saving_throws_label_wrapper" class="center">
+              Saving throws
+            </div>
+          </div>
+
+          <div id="skills_wrapper">
+            <div id="acrobatics_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="acrobatics_skill"><input type="text" id="acrobatics_skill_bonus" class="number_form" size="2" disabled> Acrobatics (Dex)
+            </div>
+            <div id="animal_handling_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="animal_handling_skill"><input type="text" id="animal_handling_skill_bonus" class="number_form" size="2" disabled> Animal Handling (Wis)
+            </div>
+            <div id="arcana_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="arcana_skill"><input type="text" id="arcana_skill_bonus" class="number_form" size="2" disabled> Arcana (Int)
+            </div>
+            <div id="athletics_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="athletics_skill"><input type="text" id="athletics_skill_bonus" class="number_form" size="2" disabled> Athletics (Str)
+            </div>
+            <div id="deception_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="deception_skill"><input type="text" id="deception_skill_bonus" class="number_form" size="2" disabled> Deception (Cha)
+            </div>
+            <div id="history_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="history_skill"><input type="text" id="history_skill_bonus" class="number_form" size="2" disabled> History (Int)
+            </div>
+            <div id="insight_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="insight_skill"><input type="text" id="insight_skill_bonus" class="number_form" size="2" disabled> Insight (Wis)
+            </div>
+            <div id="intimidation_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="intimidation_skill"><input type="text" id="intimidation_skill_bonus" class="number_form" size="2" disabled> Intimidation (Cha)
+            </div>
+            <div id="investigation_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="investigation_skill"><input type="text" id="investigation_skill_bonus" class="number_form" size="2" disabled> Investigation (Int)
+            </div>
+            <div id="medicine_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="medicine_skill"><input type="text" id="medicine_skill_bonus" class="number_form" size="2" disabled> Medicine (Wis)
+            </div>
+            <div id="nature_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="nature_skill"><input type="text" id="nature_skill_bonus" class="number_form" size="2" disabled> Nature (Int)
+            </div>
+            <div id="perception_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="perception_skill"><input type="text" id="perception_skill_bonus" class="number_form" size="2" disabled> Perception (Wis)
+            </div>
+            <div id="performance_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="performance_skill"><input type="text" id="performance_skill_bonus" class="number_form" size="2" disabled> Performance (Cha)
+            </div>
+            <div id="persuasion_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="persuasion_skill"><input type="text" id="persuasion_skill_bonus" class="number_form" size="2" disabled> Persuasion (Cha)
+            </div>
+            <div id="religion_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="religion_skill"><input type="text" id="religion_skill_bonus" class="number_form" size="2" disabled> Religion (Int)
+            </div>
+            <div id="sleight_of_hand_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="sleight_of_hand_skill"><input type="text" id="sleight_of_hand_skill_bonus" class="number_form" size="2" disabled> Sleight of Hand (Dex)
+            </div>
+            <div id="stealth_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="stealth_skill"><input type="text" id="stealth_skill_bonus" class="number_form" size="2" disabled> Stealth (Dex)
+            </div>
+            <div id="survival_skills_wrapper" class="skills_wrapper">
+              <input type="checkbox" id="survival_skill"><input type="text" id="survival_skill_bonus" class="number_form" size="2" disabled> Survival (Wis)
+            </div>
+            <div id="skills_label_wrapper" class="center">
+              Skills
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 

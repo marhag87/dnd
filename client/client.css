@@ -2,6 +2,61 @@ html {
   padding: 10px;
 }
 
+div {
+  border: 0px solid;
+}
+
+input {
+  margin: 0px 0px 0px 10px;
+}
+
+.flow {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.attribute_icon {
+  max-width: 120px;
+  margin: 0px 0px 10px 0px;
+}
+
+.ability_mod {
+  font-size: 200%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.number_form {
+  text-align: center;
+}
+
 .login-buttons-dropdown-align-right {
   float: right;
+}
+
+.save_wrapper, .skills_wrapper {
+  margin: 5px 0px 5px 0px;
+}
+
+#description_wrapper {
+  margin: 10px 0px 0px 0px;
+}
+
+#stats_col_one_wrapper {
+  margin: 0px 10px 0px 0px;
+}
+
+#inspiration_wrapper, #proficiency_wrapper, #saving_throws_wrapper {
+  margin: 0px 0px 10px 0px;
+}
+
+#skills_wrapper, #saving_throws_wrapper {
+  border: 1px solid;
+}
+
+#proficiency_label_wrapper, #inspiration_label_wrapper {
+  margin: 0px 0px 0px 5px;
 }

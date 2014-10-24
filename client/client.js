@@ -1,17 +1,42 @@
+function update_skills(skills, attribute, prof) {
+  skills.forEach(function (skill) {
+    update_proficiency(skill + "_skill", attribute);
+  });
+}
+
+function update_proficiency(field, attribute) {
+  var attribute_mod = document.getElementById(attribute + "_mod").value;
+  var proficient_skill = document.getElementById(field).checked;
+  var skill_bonus = Number(attribute_mod);
+  if (proficient_skill)
+    skill_bonus += Number(prof);
+  document.getElementById(field + "_bonus").value = prepend_plus(skill_bonus);
+}
+
+function prepend_plus(variable) {
+  if (variable >= 0)
+    variable = "+" + variable;
+  return variable;
+}
+
 Template.character.events = {
   'keydown' : function (event) {
     if (event.which == 13) { // Enter key
 
       // Declare variables
+      var experience_per_level = [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
       var attributes = ["str","dex","con","int","wis","cha"];
+      var str_skills = ["athletics"];
+      var dex_skills = ["acrobatics","sleight_of_hand","stealth"];
+      var int_skills = ["arcana","history","investigation","nature","religion"];
+      var wis_skills = ["animal_handling","insight","medicine","perception","survival"];
+      var cha_skills = ["deception","intimidation","performance","persuasion"]
 
       // Update attribute mods
       attributes.forEach(function (attribute) {
         var attribute_score = document.getElementById(attribute);
         var attribute_mod = Math.floor((Number(attribute_score.value) - 10) / 2);
-        if (attribute_mod >= 0)
-          attribute_mod = "+" + attribute_mod;
-        document.getElementById(attribute + "_mod").value = attribute_mod;
+        document.getElementById(attribute + "_mod").value = prepend_plus(attribute_mod);
       });
 
       // Update experience points
@@ -25,7 +50,7 @@ Template.character.events = {
 
       // Calculate current level
       var current_level = 0;
-      [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000].reverse().some(function (levelrange, index, array) {
+      experience_per_level.reverse().some(function (levelrange, index, array) {
         current_level = 20 - index;
         return Number(current_exp.value) >= levelrange;
       });
@@ -37,15 +62,16 @@ Template.character.events = {
 
       // Set saving throws bonuses
       attributes.forEach(function (attribute) {
-        var attribute_mod = document.getElementById(attribute + "_mod").value;
-        var proficient_attribute = document.getElementById(attribute + "_save").checked;
-        var save_throw = Number(attribute_mod);
-        if (proficient_attribute)
-          save_throw += Number(proficiency_bonus);
-        if (save_throw >= 0)
-          save_throw = "+" + save_throw;
-        document.getElementById(attribute + "_save_bonus").value = save_throw;
+        update_proficiency(attribute + "_save", attribute);
       });
+
+      // Set skill bonuses
+      update_skills(str_skills, "str", proficiency_bonus);
+      update_skills(dex_skills, "dex", proficiency_bonus);
+      update_skills(int_skills, "int", proficiency_bonus);
+      update_skills(wis_skills, "wis", proficiency_bonus);
+      update_skills(cha_skills, "cha", proficiency_bonus);
+
     }
   }
 }
