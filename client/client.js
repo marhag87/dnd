@@ -58,7 +58,7 @@ Template.character.events = {
       // Calculate current level
       var current_level = 0;
       experience_per_level.reverse().some(function (levelrange, index, array) {
-        current_level = 20 - index;
+        current_level = experience_per_level.length - index;
         return Number(current_exp.value) >= levelrange;
       });
       document.getElementById("level").value = current_level;
