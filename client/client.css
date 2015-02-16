@@ -25,7 +25,7 @@ textarea {
   margin: 0px 0px 10px 0px;
 }
 
-.ability_mod {
+.ability_mod, .defense_stat {
   font-size: 200%;
 }
 
@@ -45,6 +45,19 @@ textarea {
 .save_wrapper, .skills_wrapper, #passive_wisdom_score_wrapper, #passive_wisdom_label_wrapper {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.defense_stat_text {
+  margin: 0px 0px 0px 10px
+}
+
+.attribute_label {
+  margin-top: 35px;
+  margin-bottom: 5px;
+}
+
+#str_label {
+  margin-top: 0px;
 }
 
 .skills_wrapper {

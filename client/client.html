@@ -15,7 +15,11 @@
     <div id="character_extra_wrapper">
       <div id="character_extra_row_one_wrapper" class="flow">
         <div id="race_wrapper">
-          <input type="text" id="race" placeholder="Race">
+          <select id="race">
+            {{#each races}}
+              {{> race }}
+            {{/each}}
+          </select>
         </div>
         <div id="alignment_wrapper">
           <input type="text" id="alignment" size="7" placeholder="Alignment">
@@ -49,7 +53,7 @@
       <div id="stats_wrapper" class="flow">
         <div id="stats_col_one_wrapper">    
           <div id="str_wrapper" class="attribute_icon">
-            <div id="str_label" class="center">
+            <div id="str_label" class="attribute_label center">
               Strength:
             </div>
             <div id="str_mod_wrapper" class="center">
@@ -60,7 +64,7 @@
             </div>
           </div>
           <div id="dex_wrapper" class="attribute_icon">
-            <div id="dex_label" class="center">
+            <div id="dex_label" class="attribute_label center">
               Dexterity:
             </div>
             <div id="dex_mod_wrapper" class="center">
@@ -71,7 +75,7 @@
             </div>
           </div>
           <div id="con_wrapper" class="attribute_icon">
-            <div id="con_label" class="center">
+            <div id="con_label" class="attribute_label center">
               Constitution:
             </div>
             <div id="con_mod_wrapper" class="center">
@@ -82,7 +86,7 @@
             </div>
           </div>
           <div id="int_wrapper" class="attribute_icon">
-            <div id="int_label" class="center">
+            <div id="int_label" class="attribute_label center">
               Intelligence:
             </div>
             <div id="int_mod_wrapper" class="center">
@@ -93,7 +97,7 @@
             </div>
           </div>
           <div id="wis_wrapper" class="attribute_icon">
-            <div id="wis_label" class="center">
+            <div id="wis_label" class="attribute_label center">
               Wisdom:
             </div>
             <div id="wis_mod_wrapper" class="center">
@@ -104,7 +108,7 @@
             </div>
           </div>
           <div id="cha_wrapper" class="attribute_icon">
-            <div id="cha_label" class="center">
+            <div id="cha_label" class="attribute_label center">
               Charisma:
             </div>
             <div id="cha_mod_wrapper" class="center">
@@ -236,8 +240,38 @@
       </div>
     </div>
     <div id="description_col_two_wrapper">
-      AC
+      <div id="defense_stats_wrapper">
+        <div id="defense_stats_row_one_wrapper" class="flow center">
+          <div id="armor_class_wrapper">
+            <div id="armor_class_score_wrapper" class="center">
+              <input type="text" id="armor_class" class="number_form defense_stat" size="1" disabled>
+            </div>
+            <div id="armor_class_text_wrapper" class="center defense_stat_text">
+              AC
+            </div>
+          </div>
+          <div id="initiative_wrapper">
+            <div id="initiative_score_wrapper" class="center">
+              <input type="text" id="initiative" class="number_form defense_stat" size="1" disabled>
+            </div>
+            <div id="initiative_text_wrapper" class="center defense_stat_text">
+              Initiative
+            </div>
+          </div>
+          <div id="speed_wrapper">
+            <div id="speed_score_wrapper" class="center">
+              <input type="text" id="speed" class="number_form defense_stat" size="1" disabled>
+            </div>
+            <div id="speed_text_wrapper" class="center defense_stat_text">
+              Speed
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
+<template name="race">
+  <option value="{{this}}">{{this}}</option>
+</template>
