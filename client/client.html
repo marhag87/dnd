@@ -16,8 +16,9 @@
       <div id="character_extra_row_one_wrapper" class="flow">
         <div id="race_wrapper">
           <select id="race">
+            <option selected disabled hidden value=''></option>
             {{#each races}}
-              {{> race }}
+              <option value="{{this.name}}">{{this.name}}</option>
             {{/each}}
           </select>
         </div>
@@ -34,8 +35,17 @@
       <div id="character_extra_row_two_wrapper" class="flow">
         <div id="class_wrapper">
           <select id="class">
+            <option selected disabled hidden value=''></option>
             {{#each classes}}
-              {{> class }}
+              <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div id="subclass_wrapper">
+          <select id="class">
+            <option selected disabled hidden value=''></option>
+            {{#each subclasses.subclasses}}
+              <option value="{{.}}">{{.}}</option>
             {{/each}}
           </select>
         </div>
@@ -339,34 +349,111 @@
             <div id="attacks_and_spellcasting_weapons_wrapper">
               <div id="attacks_and_spellcasting_weapons_name_wrapper">
                 <select id="weapons">
-                  {{#each weapons}}
-                    {{> weapon }}
-                  {{/each}}
+                  <option selected disabled hidden value=''></option>
                 </select>
               </div>
               <div id="attacks_and_spellcasting_weapons_attack_bonus_wrapper">
                 <input type="text" id="attacks_and_spellcasting_weapons_attack_bonus" class="number_form" size="4" disabled>
               </div>
               <div id="attacks_and_spellcasting_weapons_damage_wrapper">
-                <input type="text" id="attacks_and_spellcasting_weapons_damage" size="10" disabled>
+                <input type="text" id="attacks_and_spellcasting_weapons_damage" size="12" disabled>
               </div>
+            </div>
+            <div id="attacks_and_spellcasting_spells_wrapper">
+              <textarea id="spells" rows="10"></textarea>
             </div>
           </div>
           <div id="attacks_and_spellcasting_text_wrapper" class="center">
             Attacks &amp; spellcasting
           </div>
         </div>
+        <div id="defense_stats_row_seven_wrapper" class="flow center">
+          <div id="money_cp_wrapper">
+            <div id="money_cp_field_wrapper">
+              <input type="text" id="cp" size="2">
+            </div>
+            <div id="money_cp_text_wrapper" class="center">
+              CP
+            </div>
+          </div>
+          <div id="money_sp_wrapper">
+            <div id="money_sp_field_wrapper">
+              <input type="text" id="sp" size="2">
+            </div>
+            <div id="money_sp_text_wrapper" class="center">
+              SP
+            </div>
+          </div>
+          <div id="money_ep_wrapper">
+            <div id="money_ep_field_wrapper">
+              <input type="text" id="ep" size="2">
+            </div>
+            <div id="money_ep_text_wrapper" class="center">
+              EP
+            </div>
+          </div>
+          <div id="money_gp_wrapper">
+            <div id="money_gp_field_wrapper">
+              <input type="text" id="gp" size="2">
+            </div>
+            <div id="money_gp_text_wrapper" class="center">
+              GP
+            </div>
+          </div>
+          <div id="money_pp_wrapper">
+            <div id="money_pp_field_wrapper">
+              <input type="text" id="pp" size="2">
+            </div>
+            <div id="money_pp_text_wrapper" class="center">
+              PP
+            </div>
+          </div>
+        </div>
+        <div id="defense_stats_row_eight_wrapper">
+          <div id="equipment_wrapper">
+            <div id="equipment_weapons_wrapper">
+              <input type="text" size="2">
+              <select>
+                <option selected value=''></option>
+                {{#each weapons}}
+                  <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div id="equipment_armor_wrapper">
+              <input type="text" size="2">
+              <select>
+                <option selected value=''></option>
+                {{#each armors}}
+                  <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div id="equipment_other_wrapper">
+              <input type="text" size="2">
+              <select>
+                <option selected value=''></option>
+                {{#each items}}
+                  <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+            </div>
+            <div id="equipment_text_wrapper">
+              Equipment
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="description_col_three_wrapper">
+      <div id="features_and_traits_wrapper">
+        <div id="features_and_traits_field_wrapper">
+          <textarea id="features_and_traits" rows="50"></textarea>
+        </div>
+        <div id="features_and_traits_text_wrapper" class="center">
+          Features &amp; traits
+        </div>
       </div>
     </div>
   </div>
-</template>
-
-<template name="race">
-  <option value="{{this}}">{{this}}</option>
-</template>
-<template name="class">
-  <option value="{{this}}">{{this}}</option>
-</template>
-<template name="weapon">
-  <option value="{{this}}">{{this}}</option>
 </template>

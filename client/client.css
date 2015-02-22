@@ -60,11 +60,11 @@ textarea {
   margin-top: 0px;
 }
 
-.skills_wrapper, #description_col_one_wrapper {
+.skills_wrapper, #description_col_one_wrapper, #description_col_two_wrapper {
   margin-right: 5px;
 }
 
-#description_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper, #hit_dice_wrapper, #death_saves_wrapper, #defense_stats_row_three_wrapper {
+#description_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper, #hit_dice_wrapper, #death_saves_wrapper, #defense_stats_row_three_wrapper, #defense_stats_row_seven_wrapper, #defense_stats_row_eight_wrapper {
   margin-top: 10px;
 }
 
