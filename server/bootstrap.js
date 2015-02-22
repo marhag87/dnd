@@ -61,5 +61,10 @@ Meteor.startup(function () {
       Items.insert(item); 
     });
   }
+
+  var data = [ {character_name: "Draupnir", createdAt: new Date().getTime()} ];
+  _.each(data,function(character) {
+    Characters.insert(character); 
+  });
 });
 

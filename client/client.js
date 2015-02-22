@@ -114,11 +114,61 @@ Template.character.events = {
         document.getElementById("attacks_and_spellcasting_weapons_attack_bonus").value = document.getElementById(weapon_data.mod + "_save_bonus").value;
         document.getElementById("attacks_and_spellcasting_weapons_damage").value = weapon_data.damage + " " + weapon_data.damage_type;
       }
+
+      // Update character in DB
+      Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: {
+        character_name:          document.getElementById("character_name").value,
+        race:                    document.getElementById("race").value,
+        alignment:               document.getElementById("alignment").value,
+        background:              document.getElementById("background").value,
+        player_name:             document.getElementById("player_name").value,
+        class:                   document.getElementById("class").value,
+        subclass:                document.getElementById("subclass").value,
+        experience_points:       document.getElementById("experience_points").value,
+        str:                     document.getElementById("str").value,
+        dex:                     document.getElementById("dex").value,
+        con:                     document.getElementById("con").value,
+        int:                     document.getElementById("int").value,
+        wis:                     document.getElementById("wis").value,
+        cha:                     document.getElementById("cha").value,
+        inspiration:             document.getElementById("inspiration").value,
+        str_save:                document.getElementById("str_save").checked,
+        dex_save:                document.getElementById("dex_save").checked,
+        con_save:                document.getElementById("con_save").checked,
+        int_save:                document.getElementById("int_save").checked,
+        wis_save:                document.getElementById("wis_save").checked,
+        cha_save:                document.getElementById("cha_save").checked,
+        acrobatics_skill:        document.getElementById("acrobatics_skill").checked,
+        animal_handling_skill:   document.getElementById("animal_handling_skill").checked,
+        arcana_skill:            document.getElementById("arcana_skill").checked,
+        athletics_skill:         document.getElementById("athletics_skill").checked,
+        deception_skill:         document.getElementById("deception_skill").checked,
+        history_skill:           document.getElementById("history_skill").checked,
+        insight_skill:           document.getElementById("insight_skill").checked,
+        intimidation_skill:      document.getElementById("intimidation_skill").checked,
+        investigation_skill:     document.getElementById("investigation_skill").checked,
+        medicine_skill:          document.getElementById("medicine_skill").checked,
+        nature_skill:            document.getElementById("nature_skill").checked,
+        perception_skill:        document.getElementById("perception_skill").checked,
+        performance_skill:       document.getElementById("performance_skill").checked,
+        persuasion_skill:        document.getElementById("persuasion_skill").checked,
+        religion_skill:          document.getElementById("religion_skill").checked,
+        sleight_of_hand_skill:   document.getElementById("sleight_of_hand_skill").checked,
+        stealth_skill:           document.getElementById("stealth_skill").checked,
+        survival_skill:          document.getElementById("survival_skill").checked,
+        other_proficiencies:     document.getElementById("other_proficiencies").value,
+        max_hitpoints_from_roll: document.getElementById("max_hitpoints_from_roll").value,
+        current_hitpoints:       document.getElementById("current_hitpoints").value,
+        temporary_hitpoints:     document.getElementById("temporary_hitpoints").value,
+      }});
     }
   }
 }
 
 Template.character.helpers({
+  character: function () {
+    return Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+  },
   races: function () {
     return Races.find();
   },

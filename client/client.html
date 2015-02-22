@@ -10,7 +10,7 @@
 <template name="character">
   <div id="basic_info_wrapper" class="flow">
     <div id="character_name_wrapper">
-      <input type="text" id="character_name" placeholder="Character name">
+      <input type="text" id="character_name" placeholder="Character name" value="{{character.character_name}}">
     </div>
     <div id="character_extra_wrapper">
       <div id="character_extra_row_one_wrapper" class="flow">
@@ -23,13 +23,13 @@
           </select>
         </div>
         <div id="alignment_wrapper">
-          <input type="text" id="alignment" size="7" placeholder="Alignment">
+          <input type="text" id="alignment" size="7" placeholder="Alignment" value="{{character.alignment}}">
         </div>
         <div id="background_wrapper">
-          <input type="text" id="background" placeholder="Background">    
+          <input type="text" id="background" placeholder="Background" value="{{character.background}}">
         </div>
         <div id="player_name_wrapper">
-          <input type="text" id="player_name" placeholder="Player name">   
+          <input type="text" id="player_name" placeholder="Player name" value="{{character.player_name}}">
         </div>
       </div>
       <div id="character_extra_row_two_wrapper" class="flow">
@@ -42,7 +42,7 @@
           </select>
         </div>
         <div id="subclass_wrapper">
-          <select id="class">
+          <select id="subclass">
             <option selected disabled hidden value=''></option>
             {{#each subclasses.subclasses}}
               <option value="{{.}}">{{.}}</option>
@@ -53,10 +53,10 @@
           <input type="text" id="level" size="7" placeholder="Level" disabled>
         </div>
         <div id="experience_points_wrapper">
-          <input type="text" id="experience_points" placeholder="Experience points">
+          <input type="text" id="experience_points" size="14" placeholder="Experience points" value="{{character.experience_points}}">
         </div>
         <div id="add_experience_points_wrapper">
-          <input type="text" id="add_experience_points" placeholder="Add exp">
+          <input type="text" id="add_experience_points" size="14" placeholder="Add exp">
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
               <input size="1" class="ability_mod number_form" type="text" id="str_mod" disabled>
             </div>
             <div id="str_score" class="center">
-              <input size="1" class="ability_score" type="text" id="str">
+              <input size="1" class="ability_score" type="text" id="str" value="{{character.str}}">
             </div>
           </div>
           <div id="dex_wrapper" class="attribute_icon">
@@ -85,7 +85,7 @@
               <input size="1" class="ability_mod number_form" type="text" id="dex_mod" disabled>
             </div>
             <div id="dex_score" class="center">
-              <input size="1" class="ability_score" type="text" id="dex">
+              <input size="1" class="ability_score" type="text" id="dex" value="{{character.dex}}">
             </div>
           </div>
           <div id="con_wrapper" class="attribute_icon">
@@ -96,7 +96,7 @@
               <input size="1" class="ability_mod number_form" type="text" id="con_mod" disabled>
             </div>
             <div id="con_score" class="center">
-              <input size="1" class="ability_score" type="text" id="con">
+              <input size="1" class="ability_score" type="text" id="con" value="{{character.con}}">
             </div>
           </div>
           <div id="int_wrapper" class="attribute_icon">
@@ -107,7 +107,7 @@
               <input size="1" class="ability_mod number_form" type="text" id="int_mod" disabled>
             </div>
             <div id="int_score" class="center">
-              <input size="1" class="ability_score" type="text" id="int">
+              <input size="1" class="ability_score" type="text" id="int" value="{{character.int}}">
             </div>
           </div>
           <div id="wis_wrapper" class="attribute_icon">
@@ -118,7 +118,7 @@
               <input size="1" class="ability_mod number_form" type="text" id="wis_mod" disabled>
             </div>
             <div id="wis_score" class="center">
-              <input size="1" class="ability_score" type="text" id="wis">
+              <input size="1" class="ability_score" type="text" id="wis" value="{{character.wis}}">
             </div>
           </div>
           <div id="cha_wrapper" class="attribute_icon">
@@ -129,14 +129,14 @@
               <input size="1" class="ability_mod number_form" type="text" id="cha_mod" disabled>
             </div>
             <div id="cha_score" class="center">
-              <input size="1" class="ability_score" type="text" id="cha">
+              <input size="1" class="ability_score" type="text" id="cha" value="{{character.cha}}">
             </div>
           </div>
         </div>
         <div id="stats_col_two_wrapper">
           <div id="inspiration_wrapper" class="flow">
             <div id="inspiration_score_wrapper">
-              <input type="text" id="inspiration" class="number_form" size="2">
+              <input type="text" id="inspiration" class="number_form" size="2" value="{{character.inspiration}}">
             </div>
             <div id="inspiration_label_wrapper">
               Inspiration
@@ -153,22 +153,22 @@
       
           <div id="saving_throws_wrapper">
             <div id="str_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="str_save"><input type="text" id="str_save_bonus" class="number_form" size="2" disabled> Strength
+              <input type="checkbox" id="str_save" checked="{{character.str_save}}"><input type="text" id="str_save_bonus" class="number_form" size="2" disabled> Strength
             </div>
             <div id="dex_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="dex_save"><input type="text" id="dex_save_bonus" class="number_form" size="2" disabled> Dexterity
+              <input type="checkbox" id="dex_save" checked="{{character.dex_save}}"><input type="text" id="dex_save_bonus" class="number_form" size="2" disabled> Dexterity
             </div>
             <div id="con_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="con_save"><input type="text" id="con_save_bonus" class="number_form" size="2" disabled> Constitution
+              <input type="checkbox" id="con_save" checked="{{character.con_save}}"><input type="text" id="con_save_bonus" class="number_form" size="2" disabled> Constitution
             </div>
             <div id="int_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="int_save"><input type="text" id="int_save_bonus" class="number_form" size="2" disabled> Intelligence
+              <input type="checkbox" id="int_save" checked="{{character.int_save}}"><input type="text" id="int_save_bonus" class="number_form" size="2" disabled> Intelligence
             </div>
             <div id="wis_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="wis_save"><input type="text" id="wis_save_bonus" class="number_form" size="2" disabled> Wisdom
+              <input type="checkbox" id="wis_save" checked="{{character.wis_save}}"><input type="text" id="wis_save_bonus" class="number_form" size="2" disabled> Wisdom
             </div>
             <div id="cha_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="cha_save"><input type="text" id="cha_save_bonus" class="number_form" size="2" disabled> Charisma
+              <input type="checkbox" id="cha_save" checked="{{character.cha_save}}"><input type="text" id="cha_save_bonus" class="number_form" size="2" disabled> Charisma
             </div>
             <div id="saving_throws_label_wrapper" class="center">
               Saving throws
@@ -177,58 +177,58 @@
 
           <div id="skills_wrapper">
             <div id="acrobatics_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="acrobatics_skill"><input type="text" id="acrobatics_skill_bonus" class="number_form" size="2" disabled> Acrobatics (Dex)
+              <input type="checkbox" id="acrobatics_skill" checked="{{character.acrobatics_skill}}"><input type="text" id="acrobatics_skill_bonus" class="number_form" size="2" disabled> Acrobatics (Dex)
             </div>
             <div id="animal_handling_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="animal_handling_skill"><input type="text" id="animal_handling_skill_bonus" class="number_form" size="2" disabled> Animal Handling (Wis)
+              <input type="checkbox" id="animal_handling_skill" checked="{{character.animal_handling_skill}}"><input type="text" id="animal_handling_skill_bonus" class="number_form" size="2" disabled> Animal Handling (Wis)
             </div>
             <div id="arcana_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="arcana_skill"><input type="text" id="arcana_skill_bonus" class="number_form" size="2" disabled> Arcana (Int)
+              <input type="checkbox" id="arcana_skill" checked="{{character.arcana_skill}}"><input type="text" id="arcana_skill_bonus" class="number_form" size="2" disabled> Arcana (Int)
             </div>
             <div id="athletics_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="athletics_skill"><input type="text" id="athletics_skill_bonus" class="number_form" size="2" disabled> Athletics (Str)
+              <input type="checkbox" id="athletics_skill" checked="{{character.athletics_skill}}"><input type="text" id="athletics_skill_bonus" class="number_form" size="2" disabled> Athletics (Str)
             </div>
             <div id="deception_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="deception_skill"><input type="text" id="deception_skill_bonus" class="number_form" size="2" disabled> Deception (Cha)
+              <input type="checkbox" id="deception_skill" checked="{{character.deception_skill}}"><input type="text" id="deception_skill_bonus" class="number_form" size="2" disabled> Deception (Cha)
             </div>
             <div id="history_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="history_skill"><input type="text" id="history_skill_bonus" class="number_form" size="2" disabled> History (Int)
+              <input type="checkbox" id="history_skill" checked="{{character.history_skill}}"><input type="text" id="history_skill_bonus" class="number_form" size="2" disabled> History (Int)
             </div>
             <div id="insight_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="insight_skill"><input type="text" id="insight_skill_bonus" class="number_form" size="2" disabled> Insight (Wis)
+              <input type="checkbox" id="insight_skill" checked="{{character.insight_skill}}"><input type="text" id="insight_skill_bonus" class="number_form" size="2" disabled> Insight (Wis)
             </div>
             <div id="intimidation_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="intimidation_skill"><input type="text" id="intimidation_skill_bonus" class="number_form" size="2" disabled> Intimidation (Cha)
+              <input type="checkbox" id="intimidation_skill" checked="{{character.intimidation_skill}}"><input type="text" id="intimidation_skill_bonus" class="number_form" size="2" disabled> Intimidation (Cha)
             </div>
             <div id="investigation_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="investigation_skill"><input type="text" id="investigation_skill_bonus" class="number_form" size="2" disabled> Investigation (Int)
+              <input type="checkbox" id="investigation_skill" checked="{{character.investigation_skill}}"><input type="text" id="investigation_skill_bonus" class="number_form" size="2" disabled> Investigation (Int)
             </div>
             <div id="medicine_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="medicine_skill"><input type="text" id="medicine_skill_bonus" class="number_form" size="2" disabled> Medicine (Wis)
+              <input type="checkbox" id="medicine_skill" checked="{{character.medicine_skill}}"><input type="text" id="medicine_skill_bonus" class="number_form" size="2" disabled> Medicine (Wis)
             </div>
             <div id="nature_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="nature_skill"><input type="text" id="nature_skill_bonus" class="number_form" size="2" disabled> Nature (Int)
+              <input type="checkbox" id="nature_skill" checked="{{character.nature_skill}}"><input type="text" id="nature_skill_bonus" class="number_form" size="2" disabled> Nature (Int)
             </div>
             <div id="perception_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="perception_skill"><input type="text" id="perception_skill_bonus" class="number_form" size="2" disabled> Perception (Wis)
+              <input type="checkbox" id="perception_skill" checked="{{character.perception_skill}}"><input type="text" id="perception_skill_bonus" class="number_form" size="2" disabled> Perception (Wis)
             </div>
             <div id="performance_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="performance_skill"><input type="text" id="performance_skill_bonus" class="number_form" size="2" disabled> Performance (Cha)
+              <input type="checkbox" id="performance_skill" checked="{{character.performance_skill}}"><input type="text" id="performance_skill_bonus" class="number_form" size="2" disabled> Performance (Cha)
             </div>
             <div id="persuasion_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="persuasion_skill"><input type="text" id="persuasion_skill_bonus" class="number_form" size="2" disabled> Persuasion (Cha)
+              <input type="checkbox" id="persuasion_skill" checked="{{character.persuasion_skill}}"><input type="text" id="persuasion_skill_bonus" class="number_form" size="2" disabled> Persuasion (Cha)
             </div>
             <div id="religion_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="religion_skill"><input type="text" id="religion_skill_bonus" class="number_form" size="2" disabled> Religion (Int)
+              <input type="checkbox" id="religion_skill" checked="{{character.religion_skill}}"><input type="text" id="religion_skill_bonus" class="number_form" size="2" disabled> Religion (Int)
             </div>
             <div id="sleight_of_hand_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="sleight_of_hand_skill"><input type="text" id="sleight_of_hand_skill_bonus" class="number_form" size="2" disabled> Sleight of Hand (Dex)
+              <input type="checkbox" id="sleight_of_hand_skill" checked="{{character.sleight_of_hand_skill}}"><input type="text" id="sleight_of_hand_skill_bonus" class="number_form" size="2" disabled> Sleight of Hand (Dex)
             </div>
             <div id="stealth_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="stealth_skill"><input type="text" id="stealth_skill_bonus" class="number_form" size="2" disabled> Stealth (Dex)
+              <input type="checkbox" id="stealth_skill" checked="{{character.stealth_skill}}"><input type="text" id="stealth_skill_bonus" class="number_form" size="2" disabled> Stealth (Dex)
             </div>
             <div id="survival_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="survival_skill"><input type="text" id="survival_skill_bonus" class="number_form" size="2" disabled> Survival (Wis)
+              <input type="checkbox" id="survival_skill" checked="{{character.survival_skill}}"><input type="text" id="survival_skill_bonus" class="number_form" size="2" disabled> Survival (Wis)
             </div>
             <div id="skills_label_wrapper" class="center">
               Skills
@@ -246,7 +246,7 @@
       </div>
       <div id="other_proficiencies_wrapper">
         <div id="other_proficiencies_field_wrapper">
-          <textarea id="other_proficiencies" rows="10"></textarea>
+          <textarea id="other_proficiencies" rows="10">{{character.other_proficiencies}}</textarea>
         </div>
         <div id="other_proficiencies_label_wrapper" class="center">
           Other proficiencies & Languages
@@ -286,7 +286,7 @@
             <input type="text" id="max_hitpoints_from_level" size="2" disabled> From level
           </div>
           <div id="max_hitpoints_from_roll_wrapper">
-            <input type="text" id="max_hitpoints_from_roll" size="2"> From roll
+            <input type="text" id="max_hitpoints_from_roll" size="2" value="{{character.max_hitpoints_from_roll}}"> From roll
           </div>
           <div id="max_hitpoints_wrapper">
             <input type="text" id="max_hitpoints" size="2" disabled> Total
@@ -297,12 +297,12 @@
         </div>
         <div id="defense_stats_row_three_wrapper">
           <div id="current_hitpoints_wrapper">
-            <input type="text" id="current_hitpoints" size="2"> Current hitpoints
+            <input type="text" id="current_hitpoints" size="2" value="{{character.current_hitpoints}}"> Current hitpoints
           </div>
         </div>
         <div id="defense_stats_row_four_wrapper">
           <div id="temporary_hitpoints_wrapper">
-            <input type="text" id="temporary_hitpoints" size="2"> Temporary hitpoints
+            <input type="text" id="temporary_hitpoints" size="2" value="{{character.temporary_hitpoints}}"> Temporary hitpoints
           </div>
         </div>
         <div id="defense_stats_row_five_wrapper" class="flow center">
