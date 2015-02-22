@@ -44,8 +44,10 @@
         <div id="subclass_wrapper">
           <select id="subclass">
             <option selected disabled hidden value=''></option>
-            {{#each subclasses.subclasses}}
-              <option value="{{.}}">{{.}}</option>
+            {{#each subclasses}}
+              {{#each this.subclasses}}
+                <option value="{{this}}">{{this}}</option>
+              {{/each}}
             {{/each}}
           </select>
         </div>
@@ -249,7 +251,7 @@
           <textarea id="other_proficiencies" rows="10">{{character.other_proficiencies}}</textarea>
         </div>
         <div id="other_proficiencies_label_wrapper" class="center">
-          Other proficiencies & Languages
+          Other proficiencies &amp; Languages
         </div>
       </div>
     </div>

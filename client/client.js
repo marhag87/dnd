@@ -198,6 +198,9 @@ Template.character.helpers({
     return Classes.find();
   },
   subclasses: function () {
+    //if (typeof document.getElementById("class").value !== 'undefined') {
+    //  return Classes.find({name: document.getElementById("class").value});
+    //}
     return Classes.find({name: "Barbarian"});
   },
   weapons: function () {
@@ -210,3 +213,12 @@ Template.character.helpers({
     return Items.find();
   },
 });
+
+setTimeout(function () {
+  var character_data = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+  if (typeof character_data !== 'undefined') {
+   document.getElementById("race").value = character_data.race
+   document.getElementById("class").value = character_data.class
+  }
+  update_forms();
+}, 1000);
