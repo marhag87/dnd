@@ -308,10 +308,10 @@
         <div id="defense_stats_row_five_wrapper" class="flow center">
           <div id="hit_dice_wrapper">
             <div id="hit_dice_total_wrapper">
-              <input type="text" id="hit_dice_total" size="2" disabled> Total
+              <input type="text" id="hit_dice_total" size="3" class="number_form" disabled> Total
             </div>
             <div id="hit_dice_current_wrapper">
-              <input type="text" id="hit_dice_current" size="2"> Current
+              <input type="text" id="hit_dice_current" class="number_form" size="3"> Current
             </div>
             <div id="hit_dice_text_wrapper" class="center">
               Hit dice
@@ -321,9 +321,9 @@
             <div id="death_saves_successes_wrapper">
               <div id="death_saves_successes_form_wrapper">
                 <form>
-                  <input type="radio" name="death_saves_successes" value="1">
-                  <input type="radio" name="death_saves_successes" value="2">
-                  <input type="radio" name="death_saves_successes" value="3">
+                  <input type="radio" id="death_saves_successes_1" name="death_saves_successes" value="1" checked="{{character.death_saves_successes_1}}">
+                  <input type="radio" id="death_saves_successes_2" name="death_saves_successes" value="2" checked="{{character.death_saves_successes_2}}">
+                  <input type="radio" id="death_saves_successes_3" name="death_saves_successes" value="3" checked="{{character.death_saves_successes_3}}">
                 </form>
               </div>
               <div id="death_saves_successes_text_wrapper" class="center">
@@ -333,9 +333,9 @@
             <div id="death_saves_failures_wrapper">
               <div id="death_saves_failures_form_wrapper">
                 <form>
-                  <input type="radio" name="death_saves_failures" value="1">
-                  <input type="radio" name="death_saves_failures" value="2">
-                  <input type="radio" name="death_saves_failures" value="3">
+                  <input type="radio" id="death_saves_failures_1" name="death_saves_failures" value="1" checked="{{character.death_saves_failures_1}}">
+                  <input type="radio" id="death_saves_failures_2" name="death_saves_failures" value="2" checked="{{character.death_saves_failures_2}}">
+                  <input type="radio" id="death_saves_failures_3" name="death_saves_failures" value="3" checked="{{character.death_saves_failures_3}}">
                 </form>
               </div>
               <div id="death_saves_failures_text_wrapper" class="center">
@@ -363,7 +363,7 @@
               </div>
             </div>
             <div id="attacks_and_spellcasting_spells_wrapper">
-              <textarea id="spells" rows="10"></textarea>
+              <textarea id="spells" rows="10">{{character.spells}}</textarea>
             </div>
           </div>
           <div id="attacks_and_spellcasting_text_wrapper" class="center">
@@ -373,7 +373,7 @@
         <div id="defense_stats_row_seven_wrapper" class="flow center">
           <div id="money_cp_wrapper">
             <div id="money_cp_field_wrapper">
-              <input type="text" id="cp" size="2">
+              <input type="text" id="cp" size="2" value="{{character.cp}}">
             </div>
             <div id="money_cp_text_wrapper" class="center">
               CP
@@ -381,7 +381,7 @@
           </div>
           <div id="money_sp_wrapper">
             <div id="money_sp_field_wrapper">
-              <input type="text" id="sp" size="2">
+              <input type="text" id="sp" size="2" value="{{character.sp}}">
             </div>
             <div id="money_sp_text_wrapper" class="center">
               SP
@@ -389,7 +389,7 @@
           </div>
           <div id="money_ep_wrapper">
             <div id="money_ep_field_wrapper">
-              <input type="text" id="ep" size="2">
+              <input type="text" id="ep" size="2" value="{{character.ep}}">
             </div>
             <div id="money_ep_text_wrapper" class="center">
               EP
@@ -397,7 +397,7 @@
           </div>
           <div id="money_gp_wrapper">
             <div id="money_gp_field_wrapper">
-              <input type="text" id="gp" size="2">
+              <input type="text" id="gp" size="2" value="{{character.gp}}">
             </div>
             <div id="money_gp_text_wrapper" class="center">
               GP
@@ -405,7 +405,7 @@
           </div>
           <div id="money_pp_wrapper">
             <div id="money_pp_field_wrapper">
-              <input type="text" id="pp" size="2">
+              <input type="text" id="pp" size="2" value="{{character.pp}}">
             </div>
             <div id="money_pp_text_wrapper" class="center">
               PP
@@ -451,7 +451,7 @@
     <div id="description_col_three_wrapper">
       <div id="features_and_traits_wrapper">
         <div id="features_and_traits_field_wrapper">
-          <textarea id="features_and_traits" rows="50"></textarea>
+          <textarea id="features_and_traits" rows="50">{{character.features_and_traits}}</textarea>
         </div>
         <div id="features_and_traits_text_wrapper" class="center">
           Features &amp; traits
