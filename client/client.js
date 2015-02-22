@@ -2,6 +2,7 @@
 // TODO: Only show weapons available with current proficiencies
 // TODO: Dynamically add weapons and spells from equipment / spell list
 // TODO: Hover over a disabled field to see reasons for value (long term goal)
+// TODO: Add new weapons/armor/equipment to DB from equipment list
 
 // Declare variables
 var experience_per_level = [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
@@ -24,18 +25,6 @@ var skills = [{name: "athletics",       attribute: "str"},
               {name: "intimidation",    attribute: "cha"},
               {name: "performance",     attribute: "cha"},
               {name: "persuasion",      attribute: "cha"}];
-var weapons = {"Club": { cost: "1 sp", damage: "1d4", damage_type: "bludgeoning", weight: 2, light: true, weapon_type: "Simple Melee Weapon"},
-               "Dagger": { cost: "2 gp", damage: "1d4", damage_type: "piercing", weight: 1, finesse: true, light: true, thrown: true, range_normal: 20, range_max: 60, weapon_type: "Simple Melee Weapon"},
-               "Crossbow, light": { cost: "25 gp", damage: "1d8", damage_type: "piercing", weight: 5, ammunition: true, range_normal: 80, range_max: 320, loading: true, twohanded: true, weapon_type: "Simple Ranged Weapon"},
-               "Greataxe": { cost: "30 gp", damage: "1d12", damage_type: "slashing", weight: 7, heavy: true, twohanded: true, weapon_type: "Martial Melee Weapon"},
-               "Longbow":  { cost: "50 gp", damage: "1d10", damage_type: "piercing", weight: 2, ammunition: true, range_normal: 150, range_max: 600, heavy: true, twohanded: true, weapon_type: "Martial Ranged Weapon"}};
-var armor = {"Padded": { cost: "5 gp", ac: 11, ac_mod: "dex", stealth_disadvantage: true, weight: 8, type: "Light Armor"},
-             "Hide":   { cost: "10 gp", ac: 12, ac_mod: "dex", ac_mod_max: 2, weight: 12, type: "Medium Armor"},
-             "Chain mail": { cost: "75 gp", ac: 16, str: 13, steath_disadvantage: true, weight: 55, type: "Heavy Armor"},
-             "Shield": { cost: "10 gp", ac: 2, weight: 6, type: "Shield"}};
-var items = {"Abacus": { cost: "2 gp", weight: 2},
-             "Arrows": { cost: "1 gp", ammunition: true, ammount: 20, weight: 1},
-             "Backpack": { cost: "2 gp", weight: 5}};
 
 function update_proficiency(field, attribute) {
   var attribute_mod = document.getElementById(attribute + "_mod").value;
@@ -120,16 +109,10 @@ Template.character.events = {
       }
 
       // Set weapon info
-      var mod_type = "str";
-      var weap = document.getElementById("weapons").value;
-      if (typeof weapons[weap] !== 'undefined' && (weapons[weap].finesse || weapons[weap].thrown || weapons[weap].weapon_type == "Simple Ranged Weapon" || weapons[weap].weapon_type == "Martial Ranged Weapon")) {
-        mod_type = "dex";
-      }
-      if (typeof weapons[document.getElementById("weapons").value] !== 'undefined') {
-        document.getElementById("attacks_and_spellcasting_weapons_attack_bonus").value = document.getElementById(mod_type + "_save_bonus").value;
-      }
-      if (typeof weapons[document.getElementById("weapons").value] !== 'undefined') {
-        document.getElementById("attacks_and_spellcasting_weapons_damage").value = weapons[document.getElementById("weapons").value].damage + " " + weapons[document.getElementById("weapons").value].damage_type;
+      var weapon_data = Weapons.findOne({name: document.getElementById("weapons").value});
+      if (typeof weapon_data !== 'undefined') {
+        document.getElementById("attacks_and_spellcasting_weapons_attack_bonus").value = document.getElementById(weapon_data.mod + "_save_bonus").value;
+        document.getElementById("attacks_and_spellcasting_weapons_damage").value = weapon_data.damage + " " + weapon_data.damage_type;
       }
     }
   }
@@ -137,21 +120,21 @@ Template.character.events = {
 
 Template.character.helpers({
   races: function () {
-    return Races.find({});
+    return Races.find();
   },
   classes: function () {
-    return Classes.find({});
+    return Classes.find();
   },
   subclasses: function () {
     return Classes.find({name: "Barbarian"});
   },
   weapons: function () {
-    return Object.keys(weapons);
+    return Weapons.find();
   },
   armors: function () {
-    return Object.keys(armor);
+    return Armors.find();
   },
   items: function () {
-    return Object.keys(items);
+    return Items.find();
   },
 });

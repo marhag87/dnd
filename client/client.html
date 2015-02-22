@@ -350,6 +350,9 @@
               <div id="attacks_and_spellcasting_weapons_name_wrapper">
                 <select id="weapons">
                   <option selected disabled hidden value=''></option>
+                  {{#each weapons}}
+                    <option value="{{this.name}}">{{this.name}}</option>
+                  {{/each}}
                 </select>
               </div>
               <div id="attacks_and_spellcasting_weapons_attack_bonus_wrapper">
@@ -416,7 +419,7 @@
               <select>
                 <option selected value=''></option>
                 {{#each weapons}}
-                  <option value="{{this}}">{{this}}</option>
+                  <option value="{{this.name}}">{{this.name}}</option>
                 {{/each}}
               </select>
             </div>
@@ -425,7 +428,7 @@
               <select>
                 <option selected value=''></option>
                 {{#each armors}}
-                  <option value="{{this}}">{{this}}</option>
+                  <option value="{{this.name}}">{{this.name}}</option>
                 {{/each}}
               </select>
             </div>
@@ -434,7 +437,7 @@
               <select>
                 <option selected value=''></option>
                 {{#each items}}
-                  <option value="{{this}}">{{this}}</option>
+                  <option value="{{this.name}}">{{this.name}}</option>
                 {{/each}}
               </select>
             </div>
