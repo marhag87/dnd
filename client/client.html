@@ -33,7 +33,11 @@
       </div>
       <div id="character_extra_row_two_wrapper" class="flow">
         <div id="class_wrapper">
-          <input type="text" id="class" placeholder="Class">
+          <select id="class">
+            {{#each classes}}
+              {{> class }}
+            {{/each}}
+          </select>
         </div>
         <div id="level_wrapper">
           <input type="text" id="level" size="7" placeholder="Level" disabled>
@@ -267,11 +271,102 @@
             </div>
           </div>
         </div>
+        <div id="defense_stats_row_two_wrapper">
+          <div id="max_hitpoints_from_level_wrapper">
+            <input type="text" id="max_hitpoints_from_level" size="2" disabled> From level
+          </div>
+          <div id="max_hitpoints_from_roll_wrapper">
+            <input type="text" id="max_hitpoints_from_roll" size="2"> From roll
+          </div>
+          <div id="max_hitpoints_wrapper">
+            <input type="text" id="max_hitpoints" size="2" disabled> Total
+          </div>
+          <div id="max_hitpoints_text" class="center">
+            Max hitpoints
+          </div>
+        </div>
+        <div id="defense_stats_row_three_wrapper">
+          <div id="current_hitpoints_wrapper">
+            <input type="text" id="current_hitpoints" size="2"> Current hitpoints
+          </div>
+        </div>
+        <div id="defense_stats_row_four_wrapper">
+          <div id="temporary_hitpoints_wrapper">
+            <input type="text" id="temporary_hitpoints" size="2"> Temporary hitpoints
+          </div>
+        </div>
+        <div id="defense_stats_row_five_wrapper" class="flow center">
+          <div id="hit_dice_wrapper">
+            <div id="hit_dice_total_wrapper">
+              <input type="text" id="hit_dice_total" size="2" disabled> Total
+            </div>
+            <div id="hit_dice_current_wrapper">
+              <input type="text" id="hit_dice_current" size="2"> Current
+            </div>
+            <div id="hit_dice_text_wrapper" class="center">
+              Hit dice
+            </div>
+          </div>
+          <div id="death_saves_wrapper">
+            <div id="death_saves_successes_wrapper">
+              <div id="death_saves_successes_form_wrapper">
+                <form>
+                  <input type="radio" name="death_saves_successes" value="1">
+                  <input type="radio" name="death_saves_successes" value="2">
+                  <input type="radio" name="death_saves_successes" value="3">
+                </form>
+              </div>
+              <div id="death_saves_successes_text_wrapper" class="center">
+                Successes
+              </div>
+            </div>
+            <div id="death_saves_failures_wrapper">
+              <div id="death_saves_failures_form_wrapper">
+                <form>
+                  <input type="radio" name="death_saves_failures" value="1">
+                  <input type="radio" name="death_saves_failures" value="2">
+                  <input type="radio" name="death_saves_failures" value="3">
+                </form>
+              </div>
+              <div id="death_saves_failures_text_wrapper" class="center">
+                Failures
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="defense_stats_row_six_wrapper">
+          <div id="attacks_and_spellcasting_wrapper">
+            <div id="attacks_and_spellcasting_weapons_wrapper">
+              <div id="attacks_and_spellcasting_weapons_name_wrapper">
+                <select id="weapons">
+                  {{#each weapons}}
+                    {{> weapon }}
+                  {{/each}}
+                </select>
+              </div>
+              <div id="attacks_and_spellcasting_weapons_attack_bonus_wrapper">
+                <input type="text" id="attacks_and_spellcasting_weapons_attack_bonus" class="number_form" size="4" disabled>
+              </div>
+              <div id="attacks_and_spellcasting_weapons_damage_wrapper">
+                <input type="text" id="attacks_and_spellcasting_weapons_damage" size="10" disabled>
+              </div>
+            </div>
+          </div>
+          <div id="attacks_and_spellcasting_text_wrapper" class="center">
+            Attacks &amp; spellcasting
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <template name="race">
+  <option value="{{this}}">{{this}}</option>
+</template>
+<template name="class">
+  <option value="{{this}}">{{this}}</option>
+</template>
+<template name="weapon">
   <option value="{{this}}">{{this}}</option>
 </template>

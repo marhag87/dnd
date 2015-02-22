@@ -1,3 +1,6 @@
+// TODO: Clear death saves
+// TODO: Only show weapons available with current proficiencies
+
 // Declare variables
 var experience_per_level = [0,300,900,2700,6500,14000,23000,34000,48000,64000,85000,100000,120000,140000,165000,195000,225000,265000,305000,355000];
 var attributes = ["str","dex","con","int","wis","cha"];
@@ -28,6 +31,23 @@ var races_stats =   {"Dwarf":      { speed: 25},
                      "Half-Elf":   { speed: 30},
                      "Half-Orc":   { speed: 30},
                      "Tiefling":   { speed: 30}};
+var classes_stats = {"Barbarian":  { hp: 12},
+                     "Bard":       { hp: 8},
+                     "Cleric":     { hp: 8},
+                     "Druid":      { hp: 8},
+                     "Fighter":    { hp: 10},
+                     "Monk":       { hp: 8},
+                     "Paladin":    { hp: 10},
+                     "Ranger":     { hp: 10},
+                     "Rogue":      { hp: 8},
+                     "Sorcerer":   { hp: 6},
+                     "Warlock":    { hp: 8},
+                     "Wizard":     { hp: 6}};
+var weapons = {"Club": { cost: "1 sp", damage: "1d4", damage_type: "bludgeoning", weight: 2, light: true, weapon_type: "Simple Melee Weapon"},
+               "Dagger": { cost: "2 gp", damage: "1d4", damage_type: "piercing", weight: 1, finesse: true, light: true, thrown: true, range_normal: 20, range_max: 60, weapon_type: "Simple Melee Weapon"},
+               "Crossbow, light": { cost: "25 gp", damage: "1d8", damage_type: "piercing", weight: 5, ammunition: true, range_normal: 80, range_max: 320, loading: true, twohanded: true, weapon_type: "Simple Ranged Weapon"},
+               "Greataxe": { cost: "30 gp", damage: "1d12", damage_type: "slashing", weight: 7, heavy: true, twohanded: true, weapon_type: "Martial Melee Weapon"},
+               "Longbow":  { cost: "50 gp", damage: "1d10", damage_type: "piercing", weight: 2, ammunition: true, range_normal: 150, range_max: 600, heavy: true, twohanded: true, weapon_type: "Martial Ranged Weapon"}};
 
 function update_proficiency(field, attribute) {
   var attribute_mod = document.getElementById(attribute + "_mod").value;
@@ -104,6 +124,28 @@ Template.character.events = {
         speed = races_stats[document.getElementById("race").value].speed;
       }
       document.getElementById("speed").value = speed;
+
+      // Set max hp
+      var max_hp_level = 0;
+      if (typeof classes_stats[document.getElementById("class").value] !== 'undefined') {
+        max_hp_level = classes_stats[document.getElementById("class").value].hp;
+      }
+      document.getElementById("max_hitpoints_from_level").value = max_hp_level;
+      document.getElementById("max_hitpoints").value = Number(document.getElementById("max_hitpoints_from_level").value) + Number(document.getElementById("max_hitpoints_from_roll").value)
+
+      // Set weapon info
+      var mod_type = "str";
+      var weap = document.getElementById("weapons").value;
+      if (typeof weapons[weap] !== 'undefined' && (weapons[weap].finesse || weapons[weap].thrown || weapons[weap].weapon_type == "Simple Ranged Weapon" || weapons[weap].weapon_type == "Martial Ranged Weapon")) {
+        mod_type = "dex";
+      }
+
+      if (typeof weapons[document.getElementById("weapons").value] !== 'undefined') {
+        document.getElementById("attacks_and_spellcasting_weapons_attack_bonus").value = document.getElementById(mod_type + "_save_bonus").value;
+      }
+      if (typeof weapons[document.getElementById("weapons").value] !== 'undefined') {
+        document.getElementById("attacks_and_spellcasting_weapons_damage").value = weapons[document.getElementById("weapons").value].damage + " " + weapons[document.getElementById("weapons").value].damage_type;
+      }
     }
   }
 }
@@ -111,5 +153,11 @@ Template.character.events = {
 Template.character.helpers({
   races: function () {
     return Object.keys(races_stats);
-  }
+  },
+  classes: function () {
+    return Object.keys(classes_stats);
+  },
+  weapons: function () {
+    return Object.keys(weapons);
+  },
 });

@@ -60,15 +60,15 @@ textarea {
   margin-top: 0px;
 }
 
-.skills_wrapper {
+.skills_wrapper, #description_col_one_wrapper {
   margin-right: 5px;
 }
 
-#description_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper {
+#description_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper, #hit_dice_wrapper, #death_saves_wrapper, #defense_stats_row_three_wrapper {
   margin-top: 10px;
 }
 
-#stats_col_one_wrapper {
+#stats_col_one_wrapper, #hit_dice_wrapper {
   margin-right: 10px;
 }
 
@@ -80,6 +80,6 @@ textarea {
   margin-left: 5px;
 }
 
-#skills_wrapper, #saving_throws_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper {
+#skills_wrapper, #saving_throws_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper, #defense_stats_row_two_wrapper, #hit_dice_wrapper, #death_saves_wrapper {
   border: 1px solid;
 }
