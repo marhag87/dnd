@@ -87,6 +87,7 @@ function update_character_DB() {
     max_hitpoints_from_roll: document.getElementById("max_hitpoints_from_roll").value,
     current_hitpoints:       document.getElementById("current_hitpoints").value,
     temporary_hitpoints:     document.getElementById("temporary_hitpoints").value,
+    hit_dice_current:        document.getElementById("hit_dice_current").value,
     death_saves_successes_1: document.getElementById("death_saves_successes_1").checked,
     death_saves_successes_2: document.getElementById("death_saves_successes_2").checked,
     death_saves_successes_3: document.getElementById("death_saves_successes_3").checked,
@@ -219,6 +220,7 @@ setTimeout(function () {
   if (typeof character_data !== 'undefined') {
    document.getElementById("race").value = character_data.race
    document.getElementById("class").value = character_data.class
+   document.getElementById("subclass").value = character_data.subclass
   }
   update_forms();
 }, 1000);

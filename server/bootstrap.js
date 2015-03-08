@@ -62,9 +62,11 @@ Meteor.startup(function () {
     });
   }
 
-  var data = [ {character_name: "Draupnir", createdAt: new Date().getTime()} ];
-  _.each(data,function(character) {
-    Characters.insert(character); 
-  });
+  if (Characters.find({_id: "jzZfNjRecszsFHQ67"}).count() === 0) {
+    var data = [ {_id: "jzZfNjRecszsFHQ67", character_name: "Draupnir", createdAt: new Date().getTime()} ];
+    _.each(data,function(character) {
+      Characters.insert(character);
+    });
+  }
 });
 
