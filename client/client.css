@@ -80,7 +80,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-.equipped_weapon_name, .equipped_weapon_mod, .equipped_weapon_damage, #proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper, #subclass {
+.equipped_weapon_name, .equipped_weapon_mod, .equipped_weapon_damage, .equipped_weapon_damage_type, #proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper, #subclass {
   margin-left: 5px;
 }
 
