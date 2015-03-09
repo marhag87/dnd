@@ -18,12 +18,12 @@ Meteor.startup(function () {
   }
 
   if (Races.find().count() === 0) {
-    var data = [  {name: "Dwarf",      speed: 25},
-                  {name: "Elf",        speed: 30},
-                  {name: "Halfling",   speed: 25},
+    var data = [  {name: "Dwarf",      speed: 25, subraces: ["Mountain Dwarf", "Hill Dwarf"]},
+                  {name: "Elf",        speed: 30, subraces: ["High Elf", "Wood Elf", "Dark Elf (Drow)"]},
+                  {name: "Halfling",   speed: 25, subraces: ["Lightfoot", "Stout"]},
                   {name: "Human",      speed: 30},
-                  {name: "Dragonborn", speed: 30},
-                  {name: "Gnome",      speed: 25},
+                  {name: "Dragonborn", speed: 30, subraces: ["Black", "Blue", "Brass", "Bronze", "Copper", "Gold", "Green", "Red", "Silver", "White"]},
+                  {name: "Gnome",      speed: 25, subraces: ["Forest Gnome", "Rock Gnome"]},
                   {name: "Half-Elf",   speed: 30},
                   {name: "Half-Orc",   speed: 30},
                   {name: "Tiefling",   speed: 30}];

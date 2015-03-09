@@ -46,6 +46,7 @@ function update_character_DB() {
   Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: {
     character_name:          document.getElementById("character_name").value,
     race:                    document.getElementById("race").value,
+    subrace:                 document.getElementById("subrace").value,
     alignment:               document.getElementById("alignment").value,
     background:              document.getElementById("background").value,
     player_name:             document.getElementById("player_name").value,
@@ -190,15 +191,21 @@ Template.character.events = {
 
 Template.character.helpers({
   character: function () {
+    // TODO: Make this dynamic
     return Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
   },
   races: function () {
     return Races.find();
   },
+  subraces: function () {
+    // TODO: Make this dynamic
+    return Races.find({name: "Dwarf"});
+  },
   classes: function () {
     return Classes.find();
   },
   subclasses: function () {
+    // TODO: Make this dynamic
     //if (typeof document.getElementById("class").value !== 'undefined') {
     //  return Classes.find({name: document.getElementById("class").value});
     //}
@@ -216,11 +223,13 @@ Template.character.helpers({
 });
 
 setTimeout(function () {
+  // TODO: Make this happen on callback/reactively
   var character_data = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
   if (typeof character_data !== 'undefined') {
    document.getElementById("race").value = character_data.race
    document.getElementById("class").value = character_data.class
    document.getElementById("subclass").value = character_data.subclass
+   document.getElementById("subrace").value = character_data.subrace
   }
   update_forms();
 }, 1000);

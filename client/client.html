@@ -22,6 +22,16 @@
             {{/each}}
           </select>
         </div>
+        <div id="subrace_wrapper">
+          <select id="subrace">
+            <option selected disabled hidden value=''></option>
+            {{#each subraces}}
+              {{#each this.subraces}}
+                <option value="{{this}}">{{this}}</option>
+              {{/each}}
+            {{/each}}
+          </select>
+        </div>
         <div id="alignment_wrapper">
           <input type="text" id="alignment" size="7" placeholder="Alignment" value="{{character.alignment}}">
         </div>
