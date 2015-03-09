@@ -426,6 +426,20 @@
         </div>
         <div id="defense_stats_row_eight_wrapper">
           <div id="equipment_wrapper">
+            <div id="equipped_weapons_wrapper">
+                {{#each character.weapons}}
+                <div class="equipped_weapon flow">
+                  <div class="equipped_weapon_name">
+                    {{this.name}}
+                  </div>
+                  <div class="equipped_weapon_mod" data-mod="{{this.mod}}">
+                  </div>
+                  <div class="equipped_weapon_damage">
+                    {{this.damage}}
+                  </div>
+                </div>
+                {{/each}}
+            </div>
             <div id="equipment_weapons_wrapper">
               <input type="text" size="2">
               <select>

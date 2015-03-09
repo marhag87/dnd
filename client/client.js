@@ -180,6 +180,11 @@ function update_forms(){
     document.getElementById("attacks_and_spellcasting_weapons_attack_bonus").value = document.getElementById(weapon_data.mod + "_save_bonus").value;
     document.getElementById("attacks_and_spellcasting_weapons_damage").value = weapon_data.damage + " " + weapon_data.damage_type;
   }
+
+  // Set weapon attack bonus
+  $('.equipped_weapon_mod').each(function() {
+    $(this).html($("#" + $(this).data("mod") + "_save_bonus").val());
+  });
 }
 
 Template.character.events = {

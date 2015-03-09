@@ -63,7 +63,7 @@ Meteor.startup(function () {
   }
 
   if (Characters.find({_id: "jzZfNjRecszsFHQ67"}).count() === 0) {
-    var data = [ {_id: "jzZfNjRecszsFHQ67", character_name: "Draupnir", createdAt: new Date().getTime()} ];
+    var data = [ {_id: "jzZfNjRecszsFHQ67", character_name: "Draupnir", createdAt: new Date().getTime(), weapons: [{name: "Greataxe",        cost: "30 gp", damage: "1d12", damage_type: "slashing", weight: 7, heavy: true, twohanded: true, mod: "str", weapon_type: "Martial Melee Weapon"}, {name: "Dagger",          cost: "2 gp", damage: "1d4", damage_type: "piercing", weight: 1, finesse: true, light: true, thrown: true, range_normal: 20, range_max: 60, mod: "dex", weapon_type: "Simple Melee Weapon"}]} ];
     _.each(data,function(character) {
       Characters.insert(character);
     });
