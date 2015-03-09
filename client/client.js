@@ -41,9 +41,17 @@ function prepend_plus(variable) {
   return variable;
 }
 
+function update_weapons() {
+  if ($("#equipment_weapons_new").val() !== '') {
+    var weapon = Weapons.findOne({name: $("#equipment_weapons_new").val()});
+    Characters.update({_id: "jzZfNjRecszsFHQ67"},{$addToSet: {weapons: weapon }});
+    $("#equipment_weapons_new").val('');
+  }
+}
+
 function update_character_DB() {
   // Update character in DB
-  Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: {
+  var character = {
     character_name:          $("#character_name").val(),
     race:                    $("#race").val(),
     subrace:                 $("#subrace").val(),
@@ -102,7 +110,8 @@ function update_character_DB() {
     gp:                      $("#gp").val(),
     pp:                      $("#pp").val(),
     features_and_traits:     $("#features_and_traits").val(),
-  }});
+  };
+  Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
 }
 
 function update_forms(){
@@ -189,6 +198,7 @@ function update_forms(){
 
 Template.character.events = {
   'change': function(event) {
+    update_weapons();
     update_forms();
     update_character_DB();
   },
