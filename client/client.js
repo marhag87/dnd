@@ -155,15 +155,15 @@ function update_forms(){
   });
 
   // Set passive wisdom
-  $("#passive_wisdom").value = 10 + Number($("#perception_skill_bonus").val());
+  $("#passive_wisdom").val(10 + Number($("#perception_skill_bonus").val()));
 
   // Set armor class
   // TODO: Take into account gear/skills. Make writable but keep suggestion?
-  $("#armor_class").value = 10 + Number($("#dex_mod").val());
+  $("#armor_class").val(10 + Number($("#dex_mod").val()));
 
   // Set initiative
   // TODO: Take into account class, race, other features.
-  $("#initiative").value = Number($("#dex_mod").val());
+  $("#initiative").val(Number($("#dex_mod").val()));
 
   // Set speed
   var race_data = Races.findOne({name: $("#race").val()});
