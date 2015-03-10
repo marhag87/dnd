@@ -44,7 +44,9 @@ function prepend_plus(variable) {
 
 function update_weapons() {
   if ($("#equipment_weapons_new").val() !== '') {
-    var weapon = Weapons.findOne({name: $("#equipment_weapons_new").val()});
+    var weapon = Weapons.findOne({name: $("#equipment_weapons_new").val()},{"fields":{"_id": false}});
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    weapon["attack_bonus"] = character[weapon.mod + "_save_bonus"];
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$addToSet: {weapons: weapon }});
     $("#equipment_weapons_new").val('');
   }
@@ -135,7 +137,8 @@ function update_character_DB() {
     current_level = exp_per_level.length - index;
     return Number(current_exp.value) >= levelrange;
   });
-  $("#level").val(current_level);
+  character["experience_points"] = current_exp.value;
+  character["level"] = current_level;
 
   // Set proficiency bonus
   proficiency_bonus = (Math.floor((Number(current_level) - 1) / 4)) + 2;
@@ -151,54 +154,38 @@ function update_character_DB() {
     character = update_proficiency(character, skill.name + "_skill", skill.attribute);
   });
 
-  console.log(character);
+  // Set passive wisdom
+  character["passive_wisdom"] = (10 + Number(character["perception_skill_bonus"]));
+
+  // Set armor class
+  // TODO: Take into account gear/skills. Make writable but keep suggestion?
+  character["armor_class"] = (10 + Number(character["dex_mod"]));
+
+  // Set initiative
+  // TODO: Take into account class, race, other features.
+  character["initiative"] = Number(character["dex_mod"]);
+
+  // Set speed
+  var race_data = Races.findOne({name: $("#race").val()});
+  if (typeof race_data !== 'undefined') {
+    character["speed"] = race_data.speed;
+  }
+
+  // Set max hp
+  var class_data = Classes.findOne({name: $("#class").val()});
+  if (typeof class_data !== 'undefined') {
+    character["max_hitpoints_from_level"] = class_data.hp;
+    character["max_hitpoints"] = Number(character["max_hitpoints_from_level"]) + Number(character["max_hitpoints_from_roll"]);
+  }
+
+  // Set hit dice
+  character["hit_dice_total"] = character["level"] + "d" + class_data.hp;
 
   Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
 }
 
 function update_forms(){
 
-
-  // Set passive wisdom
-  $("#passive_wisdom").val(10 + Number($("#perception_skill_bonus").val()));
-
-  // Set armor class
-  // TODO: Take into account gear/skills. Make writable but keep suggestion?
-  $("#armor_class").val(10 + Number($("#dex_mod").val()));
-
-  // Set initiative
-  // TODO: Take into account class, race, other features.
-  $("#initiative").val(Number($("#dex_mod").val()));
-
-  // Set speed
-  var race_data = Races.findOne({name: $("#race").val()});
-  if (typeof race_data !== 'undefined') {
-    $("#speed").val(race_data.speed);
-  }
-
-  // Set max hp
-  var class_data = Classes.findOne({name: $("#class").val()});
-  if (typeof class_data !== 'undefined') {
-    $("#max_hitpoints_from_level").val(class_data.hp);
-    $("#max_hitpoints").val(Number($("#max_hitpoints_from_level").val()) + Number($("#max_hitpoints_from_roll").val()));
-  }
-
-  // Set hit dice
-  if (typeof $("#level").val() !== 'undefined' && typeof class_data !== 'undefined') {
-    $("#hit_dice_total").val($("#level").val() + "d" + class_data.hp);
-  }
-
-  // Set weapon info
-  var weapon_data = Weapons.findOne({name: $("#weapons").val()});
-  if (typeof weapon_data !== 'undefined') {
-    $("#attacks_and_spellcasting_weapons_attack_bonus").val($("#" + weapon_data.mod + "_save_bonus").val());
-    $("#attacks_and_spellcasting_weapons_damage").val(weapon_data.damage + " " + weapon_data.damage_type);
-  }
-
-  // Set weapon attack bonus
-  $('.equipped_weapon_mod').each(function() {
-    $(this).html($("#" + $(this).data("mod") + "_save_bonus").val());
-  });
 }
 
 Template.character.events = {
@@ -283,9 +270,7 @@ Template.character.helpers({
     skills.forEach(function(skill) {
       skill["skill"] = character[skill.name + "_skill"]
       skill["skill_bonus"] = character[skill.name + "_skill_bonus"]
-      console.log(skill);
     });
-    console.log(skills);
     return skills;
   },
 });

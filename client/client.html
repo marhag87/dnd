@@ -62,7 +62,7 @@
           </select>
         </div>
         <div id="level_wrapper">
-          <input type="text" id="level" size="7" placeholder="Level" disabled>
+          <input type="text" id="level" size="7" placeholder="Level" disabled value="{{character.level}}">
         </div>
         <div id="experience_points_wrapper">
           <input type="text" id="experience_points" size="14" placeholder="Experience points" value="{{character.experience_points}}">
@@ -188,7 +188,7 @@
       </div>
       <div id="passive_wisdom_wrapper" class="flow center">
         <div id="passive_wisdom_score_wrapper">
-          <input type="text" id="passive_wisdom" class="number_form" size="2" disabled>
+          <input type="text" id="passive_wisdom" class="number_form" size="2" disabled value="{{character.passive_wisdom}}">
         </div>
         <div id="passive_wisdom_label_wrapper">
           Passive wisdom (Perception)
@@ -208,7 +208,7 @@
         <div id="defense_stats_row_one_wrapper" class="flow center">
           <div id="armor_class_wrapper">
             <div id="armor_class_score_wrapper" class="center">
-              <input type="text" id="armor_class" class="number_form defense_stat" size="1" disabled>
+              <input type="text" id="armor_class" class="number_form defense_stat" size="1" disabled value="{{character.armor_class}}">
             </div>
             <div id="armor_class_text_wrapper" class="center defense_stat_text">
               AC
@@ -216,7 +216,7 @@
           </div>
           <div id="initiative_wrapper">
             <div id="initiative_score_wrapper" class="center">
-              <input type="text" id="initiative" class="number_form defense_stat" size="1" disabled>
+              <input type="text" id="initiative" class="number_form defense_stat" size="1" disabled value="{{character.initiative}}">
             </div>
             <div id="initiative_text_wrapper" class="center defense_stat_text">
               Initiative
@@ -224,7 +224,7 @@
           </div>
           <div id="speed_wrapper">
             <div id="speed_score_wrapper" class="center">
-              <input type="text" id="speed" class="number_form defense_stat" size="1" disabled>
+              <input type="text" id="speed" class="number_form defense_stat" size="1" disabled value="{{character.speed}}">
             </div>
             <div id="speed_text_wrapper" class="center defense_stat_text">
               Speed
@@ -233,13 +233,13 @@
         </div>
         <div id="defense_stats_row_two_wrapper">
           <div id="max_hitpoints_from_level_wrapper">
-            <input type="text" id="max_hitpoints_from_level" size="2" disabled> From level
+            <input type="text" id="max_hitpoints_from_level" size="2" disabled value="{{character.max_hitpoints_from_level}}"> From level
           </div>
           <div id="max_hitpoints_from_roll_wrapper">
             <input type="text" id="max_hitpoints_from_roll" size="2" value="{{character.max_hitpoints_from_roll}}"> From roll
           </div>
           <div id="max_hitpoints_wrapper">
-            <input type="text" id="max_hitpoints" size="2" disabled> Total
+            <input type="text" id="max_hitpoints" size="2" disabled value="{{character.max_hitpoints}}"> Total
           </div>
           <div id="max_hitpoints_text" class="center">
             Max hitpoints
@@ -258,7 +258,7 @@
         <div id="defense_stats_row_five_wrapper" class="flow center">
           <div id="hit_dice_wrapper">
             <div id="hit_dice_total_wrapper">
-              <input type="text" id="hit_dice_total" size="3" class="number_form" disabled> Total
+              <input type="text" id="hit_dice_total" size="3" class="number_form" disabled value="{{character.hit_dice_total}}"> Total
             </div>
             <div id="hit_dice_current_wrapper">
               <input type="text" id="hit_dice_current" class="number_form" size="3" value="{{character.hit_dice_current}}"> Current
@@ -299,22 +299,6 @@
         </div>
         <div id="defense_stats_row_six_wrapper">
           <div id="attacks_and_spellcasting_wrapper">
-            <div id="attacks_and_spellcasting_weapons_wrapper">
-              <div id="attacks_and_spellcasting_weapons_name_wrapper">
-                <select id="weapons">
-                  <option selected disabled hidden value=''></option>
-                  {{#each weapons}}
-                    <option value="{{this.name}}">{{this.name}}</option>
-                  {{/each}}
-                </select>
-              </div>
-              <div id="attacks_and_spellcasting_weapons_attack_bonus_wrapper">
-                <input type="text" id="attacks_and_spellcasting_weapons_attack_bonus" class="number_form" size="4" disabled>
-              </div>
-              <div id="attacks_and_spellcasting_weapons_damage_wrapper">
-                <input type="text" id="attacks_and_spellcasting_weapons_damage" size="12" disabled>
-              </div>
-            </div>
             <div id="attacks_and_spellcasting_spells_wrapper">
               <textarea id="spells" rows="10">{{character.spells}}</textarea>
             </div>
@@ -376,7 +360,8 @@
                   <div class="equipped_weapon_name">
                     {{this.name}}
                   </div>
-                  <div class="equipped_weapon_mod" data-mod="{{this.mod}}">
+                  <div class="equipped_weapon_mod">
+                    {{this.attack_bonus}}
                   </div>
                   <div class="equipped_weapon_damage">
                     {{this.damage}}
