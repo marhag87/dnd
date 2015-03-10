@@ -111,17 +111,17 @@ function update_character_DB() {
     pp:                      $("#pp").val(),
     features_and_traits:     $("#features_and_traits").val(),
   };
-  Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
-}
-
-function update_forms(){
   // Update attribute mods
   attributes.forEach(function (attribute) {
     var attribute_score = document.getElementById(attribute);
     var attribute_mod = Math.floor((Number(attribute_score.value) - 10) / 2);
-    $("#" + attribute + "_mod").val(prepend_plus(attribute_mod));
+    character[attribute + "_mod"] = prepend_plus(attribute_mod);
   });
+  console.log(character);
+  Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
+}
 
+function update_forms(){
   // Update experience points
   var add_exp = document.getElementById("add_experience_points");
   var current_exp = document.getElementById("experience_points");
@@ -204,7 +204,10 @@ Template.character.events = {
   },
   'click .equipped_weapon_remove': function() {
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$pull: {weapons: this}});
-  }
+  },
+  'click .death_saves_reset': function() {
+    $(".death_saves").prop('checked', false);
+  },
 }
 
 Template.character.helpers({

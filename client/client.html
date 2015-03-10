@@ -83,7 +83,7 @@
               Strength:
             </div>
             <div id="str_mod_wrapper" class="center">
-              <input size="1" class="ability_mod number_form" type="text" id="str_mod" disabled>
+              <input size="1" class="ability_mod number_form" type="text" id="str_mod" disabled value="{{character.str_mod}}">
             </div>
             <div id="str_score" class="center">
               <input size="1" class="ability_score" type="text" id="str" value="{{character.str}}">
@@ -94,7 +94,7 @@
               Dexterity:
             </div>
             <div id="dex_mod_wrapper" class="center">
-              <input size="1" class="ability_mod number_form" type="text" id="dex_mod" disabled>
+              <input size="1" class="ability_mod number_form" type="text" id="dex_mod" disabled value="{{character.dex_mod}}">
             </div>
             <div id="dex_score" class="center">
               <input size="1" class="ability_score" type="text" id="dex" value="{{character.dex}}">
@@ -105,7 +105,7 @@
               Constitution:
             </div>
             <div id="con_mod_wrapper" class="center">
-              <input size="1" class="ability_mod number_form" type="text" id="con_mod" disabled>
+              <input size="1" class="ability_mod number_form" type="text" id="con_mod" disabled value="{{character.con_mod}}">
             </div>
             <div id="con_score" class="center">
               <input size="1" class="ability_score" type="text" id="con" value="{{character.con}}">
@@ -116,7 +116,7 @@
               Intelligence:
             </div>
             <div id="int_mod_wrapper" class="center">
-              <input size="1" class="ability_mod number_form" type="text" id="int_mod" disabled>
+              <input size="1" class="ability_mod number_form" type="text" id="int_mod" disabled value="{{character.int_mod}}">
             </div>
             <div id="int_score" class="center">
               <input size="1" class="ability_score" type="text" id="int" value="{{character.int}}">
@@ -127,7 +127,7 @@
               Wisdom:
             </div>
             <div id="wis_mod_wrapper" class="center">
-              <input size="1" class="ability_mod number_form" type="text" id="wis_mod" disabled>
+              <input size="1" class="ability_mod number_form" type="text" id="wis_mod" disabled value="{{character.wis_mod}}">
             </div>
             <div id="wis_score" class="center">
               <input size="1" class="ability_score" type="text" id="wis" value="{{character.wis}}">
@@ -138,7 +138,7 @@
               Charisma:
             </div>
             <div id="cha_mod_wrapper" class="center">
-              <input size="1" class="ability_mod number_form" type="text" id="cha_mod" disabled>
+              <input size="1" class="ability_mod number_form" type="text" id="cha_mod" disabled value="{{character.cha_mod}}">
             </div>
             <div id="cha_score" class="center">
               <input size="1" class="ability_score" type="text" id="cha" value="{{character.cha}}">
@@ -156,7 +156,7 @@
           </div>
           <div id="proficiency_wrapper" class="flow">
             <div id="proficiency_score_wrapper">
-              <input type="text" id="proficiency_bonus" class="number_form" size="2" disabled>
+              <input type="text" id="proficiency_bonus" class="number_form" size="2" disabled value="{{character.proficiency_bonus}}">
             </div>
             <div id="proficiency_label_wrapper">
               Proficiency bonus
@@ -333,9 +333,9 @@
             <div id="death_saves_successes_wrapper">
               <div id="death_saves_successes_form_wrapper">
                 <form>
-                  <input type="radio" id="death_saves_successes_1" name="death_saves_successes" value="1" checked="{{character.death_saves_successes_1}}">
-                  <input type="radio" id="death_saves_successes_2" name="death_saves_successes" value="2" checked="{{character.death_saves_successes_2}}">
-                  <input type="radio" id="death_saves_successes_3" name="death_saves_successes" value="3" checked="{{character.death_saves_successes_3}}">
+                  <input type="radio" id="death_saves_successes_1" class="death_saves" name="death_saves_successes" value="1" checked="{{character.death_saves_successes_1}}">
+                  <input type="radio" id="death_saves_successes_2" class="death_saves" name="death_saves_successes" value="2" checked="{{character.death_saves_successes_2}}">
+                  <input type="radio" id="death_saves_successes_3" class="death_saves" name="death_saves_successes" value="3" checked="{{character.death_saves_successes_3}}">
                 </form>
               </div>
               <div id="death_saves_successes_text_wrapper" class="center">
@@ -345,14 +345,17 @@
             <div id="death_saves_failures_wrapper">
               <div id="death_saves_failures_form_wrapper">
                 <form>
-                  <input type="radio" id="death_saves_failures_1" name="death_saves_failures" value="1" checked="{{character.death_saves_failures_1}}">
-                  <input type="radio" id="death_saves_failures_2" name="death_saves_failures" value="2" checked="{{character.death_saves_failures_2}}">
-                  <input type="radio" id="death_saves_failures_3" name="death_saves_failures" value="3" checked="{{character.death_saves_failures_3}}">
+                  <input type="radio" id="death_saves_failures_1" class="death_saves" name="death_saves_failures" value="1" checked="{{character.death_saves_failures_1}}">
+                  <input type="radio" id="death_saves_failures_2" class="death_saves" name="death_saves_failures" value="2" checked="{{character.death_saves_failures_2}}">
+                  <input type="radio" id="death_saves_failures_3" class="death_saves" name="death_saves_failures" value="3" checked="{{character.death_saves_failures_3}}">
                 </form>
               </div>
               <div id="death_saves_failures_text_wrapper" class="center">
                 Failures
               </div>
+            </div>
+            <div class="death_saves_reset flow center">
+              ✖
             </div>
           </div>
         </div>
@@ -429,7 +432,7 @@
             <div id="equipped_weapons_wrapper">
                 {{#each character.weapons}}
                 <div class="equipped_weapon flow">
-                  <div class="equipped_weapon_remove" data-weapon="{{this}}">
+                  <div class="equipped_weapon_remove">
                     ✖
                   </div>
                   <div class="equipped_weapon_name">
