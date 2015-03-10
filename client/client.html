@@ -18,7 +18,11 @@
           <select id="race">
             <option selected disabled hidden value=''></option>
             {{#each races}}
-              <option value="{{this.name}}">{{this.name}}</option>
+              {{#if this.character_race}}
+                <option value="{{this.name}}" selected>{{this.name}}</option>
+              {{else}}
+                <option value="{{this.name}}">{{this.name}}</option>
+              {{/if}}
             {{/each}}
           </select>
         </div>

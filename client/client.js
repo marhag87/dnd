@@ -184,14 +184,9 @@ function update_character_DB() {
   Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
 }
 
-function update_forms(){
-
-}
-
 Template.character.events = {
   'change': function(event) {
     update_weapons();
-    update_forms();
     update_character_DB();
   },
   'click .equipped_weapon_remove': function() {
@@ -208,11 +203,24 @@ Template.character.helpers({
     return Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
   },
   races: function () {
-    return Races.find();
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    var races = [];
+    if (typeof character !== 'undefined') {
+      Races.find().forEach(function(race){
+        race["character_race"] = (race.name === character.race);
+        races.push(race);
+      });
+      return races;
+    } else {
+      return Races.find();
+    }
   },
   subraces: function () {
     // TODO: Make this dynamic
-    return Races.find({name: "Dwarf"});
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    if (typeof character !== 'undefined') {
+      return Races.find({name: character.race});
+    }
   },
   classes: function () {
     return Classes.find();
@@ -279,10 +287,8 @@ setTimeout(function () {
   // TODO: Make this happen on callback/reactively
   var character_data = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
   if (typeof character_data !== 'undefined') {
-   $("#race").val(character_data.race)
    $("#class").val(character_data.class)
    $("#subclass").val(character_data.subclass)
    $("#subrace").val(character_data.subrace)
   }
-  update_forms();
 }, 1000);
