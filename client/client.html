@@ -429,6 +429,9 @@
             <div id="equipped_weapons_wrapper">
                 {{#each character.weapons}}
                 <div class="equipped_weapon flow">
+                  <div class="equipped_weapon_remove" data-weapon="{{this}}">
+                    ✖
+                  </div>
                   <div class="equipped_weapon_name">
                     {{this.name}}
                   </div>

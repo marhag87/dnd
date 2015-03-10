@@ -202,6 +202,9 @@ Template.character.events = {
     update_forms();
     update_character_DB();
   },
+  'click .equipped_weapon_remove': function() {
+    Characters.update({_id: "jzZfNjRecszsFHQ67"},{$pull: {weapons: this}});
+  }
 }
 
 Template.character.helpers({
