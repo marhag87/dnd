@@ -164,84 +164,22 @@
           </div>
       
           <div id="saving_throws_wrapper">
-            <div id="str_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="str_save" checked="{{character.str_save}}"><input type="text" id="str_save_bonus" class="number_form" size="2" disabled> Strength
-            </div>
-            <div id="dex_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="dex_save" checked="{{character.dex_save}}"><input type="text" id="dex_save_bonus" class="number_form" size="2" disabled> Dexterity
-            </div>
-            <div id="con_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="con_save" checked="{{character.con_save}}"><input type="text" id="con_save_bonus" class="number_form" size="2" disabled> Constitution
-            </div>
-            <div id="int_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="int_save" checked="{{character.int_save}}"><input type="text" id="int_save_bonus" class="number_form" size="2" disabled> Intelligence
-            </div>
-            <div id="wis_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="wis_save" checked="{{character.wis_save}}"><input type="text" id="wis_save_bonus" class="number_form" size="2" disabled> Wisdom
-            </div>
-            <div id="cha_save_wrapper" class="save_wrapper">
-              <input type="checkbox" id="cha_save" checked="{{character.cha_save}}"><input type="text" id="cha_save_bonus" class="number_form" size="2" disabled> Charisma
-            </div>
+            {{#each attributes}}
+              <div id="{{this.attribute}}_save_wrapper" class="save_wrapper">
+                <input type="checkbox" id="{{this.attribute}}_save" checked="{{this.save}}"><input type="text" id="{{this.attribute}}_save_bonus" class="number_form" size="2" disabled value="{{this.save_bonus}}"> {{this.name}}
+              </div>
+            {{/each}}
             <div id="saving_throws_label_wrapper" class="center">
               Saving throws
             </div>
           </div>
 
           <div id="skills_wrapper">
-            <div id="acrobatics_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="acrobatics_skill" checked="{{character.acrobatics_skill}}"><input type="text" id="acrobatics_skill_bonus" class="number_form" size="2" disabled> Acrobatics (Dex)
-            </div>
-            <div id="animal_handling_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="animal_handling_skill" checked="{{character.animal_handling_skill}}"><input type="text" id="animal_handling_skill_bonus" class="number_form" size="2" disabled> Animal Handling (Wis)
-            </div>
-            <div id="arcana_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="arcana_skill" checked="{{character.arcana_skill}}"><input type="text" id="arcana_skill_bonus" class="number_form" size="2" disabled> Arcana (Int)
-            </div>
-            <div id="athletics_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="athletics_skill" checked="{{character.athletics_skill}}"><input type="text" id="athletics_skill_bonus" class="number_form" size="2" disabled> Athletics (Str)
-            </div>
-            <div id="deception_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="deception_skill" checked="{{character.deception_skill}}"><input type="text" id="deception_skill_bonus" class="number_form" size="2" disabled> Deception (Cha)
-            </div>
-            <div id="history_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="history_skill" checked="{{character.history_skill}}"><input type="text" id="history_skill_bonus" class="number_form" size="2" disabled> History (Int)
-            </div>
-            <div id="insight_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="insight_skill" checked="{{character.insight_skill}}"><input type="text" id="insight_skill_bonus" class="number_form" size="2" disabled> Insight (Wis)
-            </div>
-            <div id="intimidation_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="intimidation_skill" checked="{{character.intimidation_skill}}"><input type="text" id="intimidation_skill_bonus" class="number_form" size="2" disabled> Intimidation (Cha)
-            </div>
-            <div id="investigation_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="investigation_skill" checked="{{character.investigation_skill}}"><input type="text" id="investigation_skill_bonus" class="number_form" size="2" disabled> Investigation (Int)
-            </div>
-            <div id="medicine_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="medicine_skill" checked="{{character.medicine_skill}}"><input type="text" id="medicine_skill_bonus" class="number_form" size="2" disabled> Medicine (Wis)
-            </div>
-            <div id="nature_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="nature_skill" checked="{{character.nature_skill}}"><input type="text" id="nature_skill_bonus" class="number_form" size="2" disabled> Nature (Int)
-            </div>
-            <div id="perception_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="perception_skill" checked="{{character.perception_skill}}"><input type="text" id="perception_skill_bonus" class="number_form" size="2" disabled> Perception (Wis)
-            </div>
-            <div id="performance_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="performance_skill" checked="{{character.performance_skill}}"><input type="text" id="performance_skill_bonus" class="number_form" size="2" disabled> Performance (Cha)
-            </div>
-            <div id="persuasion_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="persuasion_skill" checked="{{character.persuasion_skill}}"><input type="text" id="persuasion_skill_bonus" class="number_form" size="2" disabled> Persuasion (Cha)
-            </div>
-            <div id="religion_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="religion_skill" checked="{{character.religion_skill}}"><input type="text" id="religion_skill_bonus" class="number_form" size="2" disabled> Religion (Int)
-            </div>
-            <div id="sleight_of_hand_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="sleight_of_hand_skill" checked="{{character.sleight_of_hand_skill}}"><input type="text" id="sleight_of_hand_skill_bonus" class="number_form" size="2" disabled> Sleight of Hand (Dex)
-            </div>
-            <div id="stealth_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="stealth_skill" checked="{{character.stealth_skill}}"><input type="text" id="stealth_skill_bonus" class="number_form" size="2" disabled> Stealth (Dex)
-            </div>
-            <div id="survival_skills_wrapper" class="skills_wrapper">
-              <input type="checkbox" id="survival_skill" checked="{{character.survival_skill}}"><input type="text" id="survival_skill_bonus" class="number_form" size="2" disabled> Survival (Wis)
-            </div>
+            {{#each skills}}
+              <div id="{{this.skill}}_skills_wrapper" class="skills_wrapper">
+                <input type="checkbox" id="{{this.name}}_skill" checked="{{this.skill}}"><input type="text" id="{{this.skill}}_skill_bonus" class="number_form" size="2" disabled value="{{this.skill_bonus}}"> {{this.nicename}} ({{this.attribute}})
+              </div>
+            {{/each}}
             <div id="skills_label_wrapper" class="center">
               Skills
             </div>

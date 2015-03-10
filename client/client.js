@@ -26,13 +26,14 @@ var skills = [{name: "athletics",       attribute: "str"},
               {name: "performance",     attribute: "cha"},
               {name: "persuasion",      attribute: "cha"}];
 
-function update_proficiency(field, attribute) {
+function update_proficiency(character, field, attribute) {
   var attribute_mod = $("#" + attribute + "_mod").val();
   var proficient_skill = $("#" + field).prop('checked');
   var skill_bonus = Number(attribute_mod);
   if (proficient_skill)
     skill_bonus += Number(proficiency_bonus);
-  $("#" + field + "_bonus").val(prepend_plus(skill_bonus));
+  character[field + "_bonus"] = prepend_plus(skill_bonus);
+  return character;
 }
 
 function prepend_plus(variable) {
@@ -117,11 +118,7 @@ function update_character_DB() {
     var attribute_mod = Math.floor((Number(attribute_score.value) - 10) / 2);
     character[attribute + "_mod"] = prepend_plus(attribute_mod);
   });
-  console.log(character);
-  Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
-}
 
-function update_forms(){
   // Update experience points
   var add_exp = document.getElementById("add_experience_points");
   var current_exp = document.getElementById("experience_points");
@@ -142,17 +139,25 @@ function update_forms(){
 
   // Set proficiency bonus
   proficiency_bonus = (Math.floor((Number(current_level) - 1) / 4)) + 2;
-  $("#proficiency_bonus").val(proficiency_bonus);
+  character["proficiency_bonus"] = proficiency_bonus;
 
   // Set saving throws bonuses
   attributes.forEach(function (attribute) {
-    update_proficiency(attribute + "_save", attribute);
+    character = update_proficiency(character, attribute + "_save", attribute);
   });
 
   // Set skill bonuses
   skills.forEach(function (skill) {
-    update_proficiency(skill.name + "_skill", skill.attribute);
+    character = update_proficiency(character, skill.name + "_skill", skill.attribute);
   });
+
+  console.log(character);
+
+  Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: character});
+}
+
+function update_forms(){
+
 
   // Set passive wisdom
   $("#passive_wisdom").val(10 + Number($("#perception_skill_bonus").val()));
@@ -240,6 +245,48 @@ Template.character.helpers({
   },
   items: function () {
     return Items.find();
+  },
+  attributes: function () {
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    if (typeof character === 'undefined')
+      return
+    var attrs = [{name: "Strength",     attribute: "str", save: character["str_save"], save_bonus: character["str_save_bonus"]},
+                 {name: "Dexterity",    attribute: "dex", save: character["dex_save"], save_bonus: character["dex_save_bonus"]},
+                 {name: "Constitution", attribute: "con", save: character["con_save"], save_bonus: character["con_save_bonus"]},
+                 {name: "Intelligence", attribute: "int", save: character["int_save"], save_bonus: character["int_save_bonus"]},
+                 {name: "Wisdom",       attribute: "wis", save: character["wis_save"], save_bonus: character["wis_save_bonus"]},
+                 {name: "Charisma",     attribute: "cha", save: character["cha_save"], save_bonus: character["cha_save_bonus"]}];
+    return attrs;
+  },
+  skills: function () {
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    if (typeof character === 'undefined')
+      return
+    var skills = [{name: "acrobatics",      attribute: "dex", nicename: "Acrobatics"},
+                  {name: "animal_handling", attribute: "wis", nicename: "Animal Handling"},
+                  {name: "arcana",          attribute: "int", nicename: "Arcana"},
+                  {name: "athletics",       attribute: "str", nicename: "Athletics"},
+                  {name: "deception",       attribute: "cha", nicename: "Deception"},
+                  {name: "history",         attribute: "int", nicename: "History"},
+                  {name: "insight",         attribute: "wis", nicename: "Insight"},
+                  {name: "intimidation",    attribute: "cha", nicename: "Intimidation"},
+                  {name: "investigation",   attribute: "int", nicename: "Investigation"},
+                  {name: "medicine",        attribute: "wis", nicename: "Medicine"},
+                  {name: "nature",          attribute: "int", nicename: "Nature"},
+                  {name: "perception",      attribute: "wis", nicename: "Perception"},
+                  {name: "performance",     attribute: "cha", nicename: "Performance"},
+                  {name: "persuasion",      attribute: "cha", nicename: "Persuasion"},
+                  {name: "religion",        attribute: "int", nicename: "Religion"},
+                  {name: "sleight_of_hand", attribute: "dex", nicename: "Sleight of Hand"},
+                  {name: "stealth",         attribute: "dex", nicename: "Stealth"},
+                  {name: "survival",        attribute: "wis", nicename: "Survival"}];
+    skills.forEach(function(skill) {
+      skill["skill"] = character[skill.name + "_skill"]
+      skill["skill_bonus"] = character[skill.name + "_skill_bonus"]
+      console.log(skill);
+    });
+    console.log(skills);
+    return skills;
   },
 });
 
