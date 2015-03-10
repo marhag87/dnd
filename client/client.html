@@ -27,14 +27,18 @@
           </select>
         </div>
         <div id="subrace_wrapper">
-          <select id="subrace">
-            <option selected disabled hidden value=''></option>
-            {{#each subraces}}
-              {{#each this.subraces}}
-                <option value="{{this}}">{{this}}</option>
+          {{#if subraces}}
+            <select id="subrace">
+              <option selected disabled hidden value=''></option>
+              {{#each subraces}}
+                {{#if this.character_subrace}}
+                  <option value="{{this.name}}" selected>{{this.name}}</option>
+                {{else}}
+                  <option value="{{this.name}}">{{this.name}}</option>
+                {{/if}}
               {{/each}}
-            {{/each}}
-          </select>
+            </select>
+          {{/if}}
         </div>
         <div id="alignment_wrapper">
           <input type="text" id="alignment" size="7" placeholder="Alignment" value="{{character.alignment}}">

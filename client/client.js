@@ -218,8 +218,17 @@ Template.character.helpers({
   subraces: function () {
     // TODO: Make this dynamic
     var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    var subraces = [];
     if (typeof character !== 'undefined') {
-      return Races.find({name: character.race});
+      var race = Races.findOne({name: character.race});
+      if (typeof race.subraces !== 'undefined') {
+        race.subraces.forEach(function(subrace){
+          var sr = {name: subrace}
+          sr["character_subrace"] = (subrace === character.subrace);
+          subraces.push(sr);
+        });
+        return subraces;
+      }
     }
   },
   classes: function () {
@@ -289,6 +298,5 @@ setTimeout(function () {
   if (typeof character_data !== 'undefined') {
    $("#class").val(character_data.class)
    $("#subclass").val(character_data.subclass)
-   $("#subrace").val(character_data.subrace)
   }
 }, 1000);
