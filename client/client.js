@@ -232,14 +232,33 @@ Template.character.helpers({
     }
   },
   classes: function () {
-    return Classes.find();
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    var classes = [];
+    if (typeof character !== 'undefined') {
+      Classes.find().forEach(function(dndclass){
+        dndclass["character_class"] = (dndclass.name === character.class);
+        classes.push(dndclass);
+      });
+      return classes;
+    } else {
+      return Classes.find();
+    }
   },
   subclasses: function () {
     // TODO: Make this dynamic
-    //if (typeof $("class").val() !== 'undefined') {
-    //  return Classes.find({name: $("class").val()});
-    //}
-    return Classes.find({name: "Barbarian"});
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    var subclasses = [];
+    if (typeof character !== 'undefined') {
+      var dndclass = Classes.findOne({name: character.class});
+      if (typeof dndclass.subclasses !== 'undefined') {
+        dndclass.subclasses.forEach(function(subclass){
+          var sc = {name: subclass}
+          sc["character_subclass"] = (subclass === character.subclass);
+          subclasses.push(sc);
+        });
+        return subclasses;
+      }
+    }
   },
   weapons: function () {
     return Weapons.find();
@@ -291,12 +310,3 @@ Template.character.helpers({
     return skills;
   },
 });
-
-setTimeout(function () {
-  // TODO: Make this happen on callback/reactively
-  var character_data = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
-  if (typeof character_data !== 'undefined') {
-   $("#class").val(character_data.class)
-   $("#subclass").val(character_data.subclass)
-  }
-}, 1000);

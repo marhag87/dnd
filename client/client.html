@@ -55,19 +55,27 @@
           <select id="class">
             <option selected disabled hidden value=''></option>
             {{#each classes}}
-              <option value="{{this.name}}">{{this.name}}</option>
+              {{#if this.character_class}}
+                <option value="{{this.name}}" selected>{{this.name}}</option>
+              {{else}}
+                <option value="{{this.name}}">{{this.name}}</option>
+              {{/if}}
             {{/each}}
           </select>
         </div>
         <div id="subclass_wrapper">
-          <select id="subclass">
-            <option selected disabled hidden value=''></option>
-            {{#each subclasses}}
-              {{#each this.subclasses}}
-                <option value="{{this}}">{{this}}</option>
+          {{#if subclasses}}
+            <select id="subclass">
+              <option selected disabled hidden value=''></option>
+              {{#each subclasses}}
+                {{#if this.character_subclass}}
+                  <option value="{{this.name}}" selected>{{this.name}}</option>
+                {{else}}
+                  <option value="{{this.name}}">{{this.name}}</option>
+                {{/if}}
               {{/each}}
-            {{/each}}
-          </select>
+            </select>
+          {{/if}}
         </div>
         <div id="level_wrapper">
           <input type="text" id="level" size="7" placeholder="Level" disabled value="{{character.level}}">

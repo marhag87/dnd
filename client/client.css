@@ -64,7 +64,7 @@ textarea {
   margin-right: 5px;
 }
 
-#race, #class, #subclass {
+#race, #class {
   width: 100px;
 }
 
@@ -80,7 +80,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-.equipped_weapon_name, .equipped_weapon_mod, .equipped_weapon_damage, .equipped_weapon_damage_type, #proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper, #subclass {
+.equipped_weapon_name, .equipped_weapon_mod, .equipped_weapon_damage, .equipped_weapon_damage_type, #proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper, #subclass, #subrace, #race, #class {
   margin-left: 5px;
 }
 
