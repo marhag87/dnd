@@ -13,7 +13,7 @@ Meteor.startup(function () {
                        {name: "Warlock",    hp: 8,  subclasses: ["The Archfey", "The Fiend", "The Great Old One"]},
                        {name: "Wizard",     hp: 6,  subclasses: ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"]}];
     _.each(data,function(dndclass) {
-      Classes.insert(dndclass); 
+      Classes.insert(dndclass);
     });
   }
 
@@ -28,7 +28,7 @@ Meteor.startup(function () {
                   {name: "Half-Orc",   speed: 30},
                   {name: "Tiefling",   speed: 30}];
     _.each(data,function(race) {
-      Races.insert(race); 
+      Races.insert(race);
     });
   }
 
@@ -39,7 +39,7 @@ Meteor.startup(function () {
                  {name: "Greataxe",        cost: "30 gp", damage: "1d12", damage_type: "slashing", weight: 7, heavy: true, twohanded: true, mod: "str", weapon_type: "Martial Melee Weapon"},
                  {name: "Longbow",         cost: "50 gp", damage: "1d10", damage_type: "piercing", weight: 2, ammunition: true, range_normal: 150, range_max: 600, heavy: true, twohanded: true, mod: "dex", weapon_type: "Martial Ranged Weapon"}];
     _.each(data,function(weapon) {
-      Weapons.insert(weapon); 
+      Weapons.insert(weapon);
     });
   }
 
@@ -49,7 +49,7 @@ Meteor.startup(function () {
                  {name: "Chain mail", cost: "75 gp", ac: 16, str: 13, steath_disadvantage: true, weight: 55, type: "Heavy Armor"},
                  {name: "Shield",     cost: "10 gp", ac: 2,  weight: 6, type: "Shield"}];
     _.each(data,function(armor) {
-      Armors.insert(armor); 
+      Armors.insert(armor);
     });
   }
 
@@ -58,7 +58,7 @@ Meteor.startup(function () {
                  {name: "Arrows", cost: "1 gp", ammunition: true, ammount: 20, weight: 1},
                  {name: "Backpack", cost: "2 gp", weight: 5}];
     _.each(data,function(item) {
-      Items.insert(item); 
+      Items.insert(item);
     });
   }
 
