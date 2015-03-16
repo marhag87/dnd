@@ -27,8 +27,8 @@ var skills = [{name: "athletics",       attribute: "str"},
               {name: "persuasion",      attribute: "cha"}];
 
 function update_proficiency(character, field, attribute) {
-  var attribute_mod = $("#" + attribute + "_mod").val();
-  var proficient_skill = $("#" + field).prop('checked');
+  var attribute_mod = character[attribute + "_mod"];
+  var proficient_skill = character[field];
   var skill_bonus = Number(attribute_mod);
   if (proficient_skill)
     skill_bonus += Number(proficiency_bonus);
@@ -114,11 +114,10 @@ function update_character_DB() {
     pp:                      $("#pp").val(),
     features_and_traits:     $("#features_and_traits").val(),
   };
+
   // Update attribute mods
   attributes.forEach(function (attribute) {
-    var attribute_score = document.getElementById(attribute);
-    var attribute_mod = Math.floor((Number(attribute_score.value) - 10) / 2);
-    character[attribute + "_mod"] = prepend_plus(attribute_mod);
+    character[attribute + "_mod"] = prepend_plus(Math.floor((character[attribute] - 10) / 2));
   });
 
   // Update experience points
