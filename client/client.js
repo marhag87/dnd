@@ -49,6 +49,14 @@ function update_weapons() {
     weapon["attack_bonus"] = character[weapon.mod + "_save_bonus"];
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$addToSet: {weapons: weapon }});
     $("#equipment_weapons_new").val('');
+  } else {
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    var weapons = [];
+    character.weapons.forEach(function(weapon){
+      weapon["attack_bonus"] = character[weapon["mod"] + "_save_bonus"]
+      weapons.push(weapon)
+    });
+    Characters.update({_id: "jzZfNjRecszsFHQ67"},{"$set": {weapons: weapons}});
   }
 }
 
@@ -185,8 +193,8 @@ function update_character_DB() {
 
 Template.character.events = {
   'change': function(event) {
-    update_weapons();
     update_character_DB();
+    update_weapons();
   },
   'click .equipped_weapon_remove': function() {
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$pull: {weapons: this}});
