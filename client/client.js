@@ -192,7 +192,7 @@ Template.character.events = {
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$pull: {weapons: this}});
   },
   'click .death_saves_reset': function() {
-    $(".death_saves").prop('checked', false);
+    Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: {"death_saves_failures_1": false, "death_saves_failures_2": false, "death_saves_failures_3": false, "death_saves_successes_1": false, "death_saves_successes_2": false, "death_saves_successes_3": false}});
   },
 }
 
