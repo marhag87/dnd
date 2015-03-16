@@ -317,3 +317,17 @@ Template.character.helpers({
     return skills;
   },
 });
+
+Template.spell.events({
+  'keyup #spell_search': function(evt) {
+    Session.set("spell_search_query", evt.currentTarget.value);
+  },
+});
+
+Template.spell.helpers({
+  spells: function () {
+    var search = Session.get("spell_search_query");
+    var query = new RegExp( search, 'i' );
+    return Spells.find({name: {'$regex': query}});
+  },
+});

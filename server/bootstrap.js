@@ -68,5 +68,14 @@ Meteor.startup(function () {
       Characters.insert(character);
     });
   }
+
+  if (Spells.find().count() === 0) {
+    var data = [ {name: "Acid Splash", school: "Conjuration", level: 0, casting_time: "1 action", range: "60 feet", verbal: true, somatic: true, duration: "Instantaneous", description: "You hurl a bubble of acid. Choose one creature within range, or choose two creatures within range that are within 5 feet of each other. A target must succeed on a Dexterity saving throw or take 1d6 acid damage. This spell's damage increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6)"},
+                 {name: "Aid", school: "Abjuration", level: 2, casting_time: "1 action", range: "30 feet", verbal: true, somatic: true, material: "A tiny strip of white cloth", duration: "8 hours", description: "Your spell bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit points maximum and current hit points increase by 5 for the duration.", extras: [{ title: "At Higher Levels.", content: "When you cast this spell using a spell slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd."}]},
+                 {name: "Barkskin", school: "Transmutation", level: 2, casting_time: "1 action", range: "Touch", verbal: true, somatic: true, material: "A handful of oak bark", concentration: true, duration: "up to 1 hour", description: "You touch a willing creature. Until the spell ends, the target's skin has a rough, bark-like appearance, and the target's AC can't be less than 16, regardless of what kind of armor it is wearing."}];
+    _.each(data,function(spell) {
+      Spells.insert(spell);
+    });
+  }
 });
 

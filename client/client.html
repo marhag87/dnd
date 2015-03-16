@@ -2,8 +2,13 @@
 
 <body>
 {{> loginButtons align="right"}}<br/>
-<div id="character_sheet">
-{{> character }}
+<div class="flow">
+  <div id="character_sheet">
+    {{> character }}
+  </div>
+  <div id="spell_search">
+    {{> spell }}
+  </div>
 </div>
 </body>
 
@@ -433,4 +438,15 @@
       </div>
     </div>
   </div>
+</template>
+
+<template name="spell">
+<div>
+  <input type="text" id="spell_search">
+</div>
+<div id="spell_search_results">
+  {{#each spells}}
+    <div title="{{this.school}} {{this.level}} {{this.description}}">{{this.name}}</div>
+  {{/each}}
+</div>
 </template>
