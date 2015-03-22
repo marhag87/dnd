@@ -2,7 +2,7 @@
 
 <body>
 {{> loginButtons align="right"}}<br/>
-<div class="flow">
+<div class="flow center">
   <div id="character_sheet">
     {{> character }}
   </div>
@@ -320,6 +320,38 @@
         </div>
         <div id="defense_stats_row_six_wrapper">
           <div id="attacks_and_spellcasting_wrapper">
+            <div id="equipped_weapons_wrapper">
+                {{#each character.weapons}}
+                <div class="equipped_weapon flow">
+                  <div class="equipped_weapon_amount">
+                    <input type="text" size="2" value="{{this.amount}}">
+                  </div>
+                  <div class="equipped_weapon_name">
+                    {{this.name}}
+                  </div>
+                  <div class="equipped_weapon_mod">
+                    {{this.attack_bonus}}
+                  </div>
+                  <div class="equipped_weapon_damage">
+                    {{this.damage}}
+                  </div>
+                  <div class="equipped_weapon_damage_type">
+                    {{this.damage_type}}
+                  </div>
+                  <div class="equipped_weapon_remove">
+                    ✖
+                  </div>
+                </div>
+                {{/each}}
+            </div>
+            <div id="equipment_weapons_wrapper">
+              <select id="equipment_weapons_new">
+                <option selected value=''>Add weapon</option>
+                {{#each weapons}}
+                  <option value="{{this.name}}">{{this.name}}</option>
+                {{/each}}
+              </select>
+            </div>
             <div id="attacks_and_spellcasting_spells_wrapper">
               <textarea id="spells" rows="10">{{character.spells}}</textarea>
             </div>
@@ -372,49 +404,39 @@
         </div>
         <div id="defense_stats_row_eight_wrapper">
           <div id="equipment_wrapper">
-            <div id="equipped_weapons_wrapper">
-                {{#each character.weapons}}
-                <div class="equipped_weapon flow">
-                  <div class="equipped_weapon_remove">
-                    ✖
+            <div id="equipped_armors_wrapper">
+                {{#each character.armors}}
+                <div class="equipped_armor flow">
+                  <div class="equipped_armor_amount">
+                    <input type="text" size="2" value="{{this.amount}}">
                   </div>
-                  <div class="equipped_weapon_name">
+                  <div class="equipped_armor_name">
                     {{this.name}}
                   </div>
-                  <div class="equipped_weapon_mod">
-                    {{this.attack_bonus}}
+                  <div class="equipped_armor_ac">
+                    {{#if this.ac_with_bonus}}
+                      {{this.ac_with_bonus}} AC
+                    {{else}}
+                      {{this.ac}} AC
+                    {{/if}}
                   </div>
-                  <div class="equipped_weapon_damage">
-                    {{this.damage}}
-                  </div>
-                  <div class="equipped_weapon_damage_type">
-                    {{this.damage_type}}
+                  <div class="equipped_armor_remove">
+                    ✖
                   </div>
                 </div>
                 {{/each}}
             </div>
-            <div id="equipment_weapons_wrapper">
-              <input type="text" size="2">
-              <select id="equipment_weapons_new">
-                <option selected value=''></option>
-                {{#each weapons}}
-                  <option value="{{this.name}}">{{this.name}}</option>
-                {{/each}}
-              </select>
-            </div>
             <div id="equipment_armor_wrapper">
-              <input type="text" size="2">
-              <select>
-                <option selected value=''></option>
+              <select id="equipment_armor_new">
+                <option selected value=''>Add armor</option>
                 {{#each armors}}
                   <option value="{{this.name}}">{{this.name}}</option>
                 {{/each}}
               </select>
             </div>
             <div id="equipment_other_wrapper">
-              <input type="text" size="2">
               <select>
-                <option selected value=''></option>
+                <option selected value=''>Add item</option>
                 {{#each items}}
                   <option value="{{this.name}}">{{this.name}}</option>
                 {{/each}}

@@ -60,6 +60,31 @@ function update_weapons() {
   }
 }
 
+function update_armors() {
+  if ($("#equipment_armor_new").val() !== '') {
+    var armor = Armors.findOne({name: $("#equipment_armor_new").val()},{"fields":{"_id": false}});
+    var character = Characters.findOne({_id: "jzZfNjRecszsFHQ67"});
+    if (armor["ac_mod"]) {
+      if (armor["ac_mod_max"]) {
+        armor["ac_with_bonus"] = Number(armor["ac"] + Math.min(character[armor["ac_mod"] + "_mod"], armor["ac_mod_max"]))
+      } else {
+        armor["ac_with_bonus"] = armor["ac"] + Number(character[armor["ac_mod"] + "_mod"])
+      }
+    }
+    if (armor["type"] == "Shield") {
+      armor["ac_with_bonus"] = prepend_plus(armor["ac"])
+    }
+    if (armor["amount"]) {
+      // This doesn't work. addToSet is probably the culprit
+      armor["amount"]++
+    } else {
+      armor["amount"] = 1
+    }
+    Characters.update({_id: "jzZfNjRecszsFHQ67"},{$addToSet: {armors: armor }});
+    $("#equipment_armor_new").val('');
+  }
+}
+
 function update_character_DB() {
   // Update character in DB
   var character = {
@@ -195,9 +220,13 @@ Template.character.events = {
   'change': function(event) {
     update_character_DB();
     update_weapons();
+    update_armors();
   },
   'click .equipped_weapon_remove': function() {
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$pull: {weapons: this}});
+  },
+  'click .equipped_armor_remove': function() {
+    Characters.update({_id: "jzZfNjRecszsFHQ67"},{$pull: {armors: this}});
   },
   'click .death_saves_reset': function() {
     Characters.update({_id: "jzZfNjRecszsFHQ67"},{$set: {"death_saves_failures_1": false, "death_saves_failures_2": false, "death_saves_failures_3": false, "death_saves_successes_1": false, "death_saves_successes_2": false, "death_saves_successes_3": false}});

@@ -80,10 +80,10 @@ textarea {
   margin-bottom: 10px;
 }
 
-.equipped_weapon_name, .equipped_weapon_mod, .equipped_weapon_damage, .equipped_weapon_damage_type, #proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper, #subclass, #subrace, #race, #class {
+.equipped_armor_name, .equipped_armor_ac, .equipped_armor_remove, .equipped_weapon_remove, .equipped_weapon_name, .equipped_weapon_mod, .equipped_weapon_damage, .equipped_weapon_damage_type, #proficiency_label_wrapper, #inspiration_label_wrapper, #passive_wisdom_label_wrapper, #subclass, #subrace, #race, #class {
   margin-left: 5px;
 }
 
-#skills_wrapper, #saving_throws_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper, #defense_stats_row_two_wrapper, #hit_dice_wrapper, #death_saves_wrapper {
+#skills_wrapper, #saving_throws_wrapper, #passive_wisdom_wrapper, #other_proficiencies_wrapper, #defense_stats_row_two_wrapper, #hit_dice_wrapper, #death_saves_wrapper, #stats_col_one_wrapper {
   border: 1px solid;
 }
